@@ -11,7 +11,7 @@ const AlbumSchema = new Schema({
   year: {
     type: String
   },
-  coverImage: {
+  image: {
     type: String
   }
 });

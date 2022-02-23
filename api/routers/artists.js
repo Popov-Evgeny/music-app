@@ -23,6 +23,11 @@ router.get('/', async (req , res) => {
   res.send(artists);
 });
 
+router.delete('/:name', async (req , res) => {
+  const artists = await Artist.deleteOne({name: req.params.name})
+  res.send(artists);
+});
+
 router.post('/', upload.single('image'), async (req , res, next) => {
   try {
     if (!req.body.name) {
@@ -32,11 +37,11 @@ router.post('/', upload.single('image'), async (req , res, next) => {
     const artistData = {
       name: req.body.name,
       information: req.body.information,
-      photo: null
+      image: null
     }
 
     if (req.file) {
-      artistData.photo = req.file.filename;
+      artistData.image = req.file.filename;
     }
 
     const artist = new Artist(artistData);
