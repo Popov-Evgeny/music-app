@@ -17,6 +17,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { ArtistsComponent } from './pages/artists/artists.component';
 import { AlbumsComponent } from './pages/albums/albums.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -25,21 +26,22 @@ import { AlbumsComponent } from './pages/albums/albums.component';
     ArtistsComponent,
     AlbumsComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    FlexLayoutModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([])
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        LayoutModule,
+        FlexLayoutModule,
+        HttpClientModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        StoreModule.forRoot({}, {}),
+        EffectsModule.forRoot([]),
+        MatCardModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
