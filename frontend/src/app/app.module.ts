@@ -15,11 +15,15 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { ArtistsComponent } from './pages/artists/artists.component';
+import { AlbumsComponent } from './pages/albums/albums.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent
+    LayoutComponent,
+    ArtistsComponent,
+    AlbumsComponent
   ],
   imports: [
     BrowserModule,
