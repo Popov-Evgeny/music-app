@@ -3,19 +3,18 @@ const Schema = mongoose.Schema;
 
 const AlbumSchema = new Schema({
   name : {
-    type: String
+    type: String,
+    required: true
   },
-  executor: {
-    type: String
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'Artist',
+    required: true
   },
-  year: {
-    type: String
-  },
-  image: {
-    type: String
-  }
+  year: String,
+  image: String
 });
 
-const Album = mongoose.model('Artist', AlbumSchema);
+const Album = mongoose.model('Album', AlbumSchema);
 
 module.exports = Album;

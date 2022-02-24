@@ -23,11 +23,6 @@ router.get('/', async (req , res) => {
   res.send(artists);
 });
 
-router.delete('/:name', async (req , res) => {
-  const artists = await Artist.deleteOne({name: req.params.name})
-  res.send(artists);
-});
-
 router.post('/', upload.single('image'), async (req , res, next) => {
   try {
     if (!req.body.name) {
@@ -52,8 +47,6 @@ router.post('/', upload.single('image'), async (req , res, next) => {
   } catch (e) {
     next(e);
   }
-  res.send('post request - artist');
 });
-
 
 module.exports = router;
