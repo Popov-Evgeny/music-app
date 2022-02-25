@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { ApiArtistsData, ArtistModel } from '../models/artist.model';
 import { map } from 'rxjs/operators';
-import { AlbumModel } from '../models/album.model';
+import { AlbumModel, ApiAlbumData } from '../models/album.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class MusicService {
   }
 
   getArtistsAlbums(id: string) {
-    return this.http.get<AlbumModel[]>(environment.apiUrl + '/albums/withArtist/' + id).pipe(map(response => {
+    return this.http.get<ApiAlbumData[]>(environment.apiUrl + '/albums/withArtist/' + id).pipe(map(response => {
       return response.map( albumData => {
         return new AlbumModel(
           albumData._id,
