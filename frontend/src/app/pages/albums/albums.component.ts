@@ -19,6 +19,7 @@ export class AlbumsComponent implements OnInit {
   error: Observable<null | string>;
   apiUrl = environment.apiUrl
   artistName!: string;
+  artistInfo!: string;
 
   constructor(private musicService: MusicService, private route: ActivatedRoute, private store: Store<AppState>) {
     this.albums = this.store.select(state => state.albums.albums);
@@ -31,6 +32,9 @@ export class AlbumsComponent implements OnInit {
       this.artistName = params['name'];
       this.store.dispatch(fetchAlbumRequest({id: params['id']}))
     });
+    this.albums.subscribe( album => {
+      this.artistInfo = album[0]?.author.information;
+    })
   }
 
 }

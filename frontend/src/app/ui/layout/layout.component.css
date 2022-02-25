@@ -1,12 +1,12 @@
 .sidenav-container {
   height: 100%;
-  background: black;
+  background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(194,24,91,1) 83%, rgba(194,24,91,1) 97%)
 }
 
 .sidenav {
   width: 200px;
   background: black;
-  box-shadow:  0 0 15px -2px #c2185b;
+  box-shadow:  0 0 15px -2px white;
 }
 
 .sidenav-menu{
@@ -25,6 +25,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  box-shadow: 0 0 10px 2px white;
 }
 
 .menu-btn{
@@ -44,8 +45,14 @@ mat-icon{
   text-decoration: none;
   color: white;
   margin: 0 15px;
+  padding-top: 8px;
 }
 
 .content{
   padding: 15px 20px
+}
+
+.material-icons{
+  font-size: 30px;
+  padding-bottom: 7px;
 }

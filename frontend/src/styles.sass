@@ -1,38 +1,52 @@
-*
+*, body
   padding: 0
   margin: 0
   box-sizing: border-box
   font-family: 'Josefin Sans', sans-serif
 
 .card
-  border: 2px solid silver
-  margin: 7px
-  border-radius: 2%
+  text-decoration: none
+
+  @media screen and (min-width: 400px)
+    &__card-item:hover
+      box-shadow: 0 0 10px 3px white
+      color: black
+      transform: scale(1.1,1.2)
+      z-index: 100
+
+  &__card-item
+    border: 2px solid silver
+    margin: 7px
+    border-radius: 10%!important
+    background: linear-gradient(180deg, rgba(2,0,36,1) 40%, rgba(194,24,91,1) 83%, rgba(194,24,91,1) 87%)
 
   &__image-block
     display: flex
     justify-content: center
-    padding: 5px
+    padding: 15px
+    border-radius: 20%
 
   &__image
-    max-width: 500px
-    height: 380px
+    max-width: 400px
+    height: 330px
     border: 1px solid silver
+    border-radius: 20%
 
   &__title
     font-weight: 700
     font-style: italic
     text-align: center
     text-transform: capitalize
-    margin: 5px 0
+    margin: 0
     padding: 5px
 
   &__subtitle
-    font-weight: 500
+    font-size: 18px
+    font-weight: 700
     font-family: 'Noto Serif Display', serif
     text-align: center
     font-style: italic
-    color: darkgray
+    color: black
 
 
   &__button-block
@@ -49,6 +63,12 @@
   font-weight: 300!important
   font-style: italic!important
   padding: 5px 15px
+
+.artist-subtitle
+  font-size: 18px
+  font-style: italic
+  padding-bottom: 10px
+
 
 .spinner
   margin: 10% auto
