@@ -22,33 +22,37 @@ import { artistsReducer } from './store/artist.reducer';
 import { ArtistEffects } from './store/artist.effects';
 import { AlbumsEffects } from './store/album.effects';
 import { albumsReducer } from './store/album.reducer';
+import { NotFoundComponent } from './not-found.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutComponent,
     ArtistsComponent,
-    AlbumsComponent
+    AlbumsComponent,
+    NotFoundComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        LayoutModule,
-        FlexLayoutModule,
-        HttpClientModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatListModule,
-        StoreModule.forRoot({
-          artists: artistsReducer,
-          albums: albumsReducer
-        }, {}),
-        EffectsModule.forRoot([ArtistEffects, AlbumsEffects]),
-        MatCardModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    StoreModule.forRoot({
+      artists: artistsReducer,
+      albums: albumsReducer
+    }, {}),
+    EffectsModule.forRoot([ArtistEffects, AlbumsEffects]),
+    MatCardModule,
+    MatProgressSpinnerModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -18,6 +18,7 @@ export class AlbumsComponent implements OnInit {
   loading: Observable<boolean>;
   error: Observable<null | string>;
   apiUrl = environment.apiUrl
+  artistName!: string;
 
   constructor(private musicService: MusicService, private route: ActivatedRoute, private store: Store<AppState>) {
     this.albums = this.store.select(state => state.albums.albums);
@@ -27,10 +28,8 @@ export class AlbumsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const artistId = {
-        id: params['id']
-      }
-      this.store.dispatch(fetchAlbumRequest(artistId))
+      this.artistName = params['name'];
+      this.store.dispatch(fetchAlbumRequest({id: params['id']}))
     });
   }
 
