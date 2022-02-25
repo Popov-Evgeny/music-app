@@ -25,7 +25,7 @@ export class MusicService {
   }
 
   getArtistsAlbums(id: string) {
-    return this.http.get<AlbumModel[]>(environment.apiUrl + '/albums?artist=' + id).pipe(map(response => {
+    return this.http.get<AlbumModel[]>(environment.apiUrl + '/albums/withArtist/' + id).pipe(map(response => {
       return response.map( albumData => {
         return new AlbumModel(
           albumData._id,

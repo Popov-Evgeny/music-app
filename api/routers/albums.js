@@ -25,13 +25,18 @@ router.get('/', async (req , res) => {
   if (req.query.artist){
     query.author = {_id: req.query.artist};
   }
-  const albums = await Albums.find(query).populate('author', 'name information');
+  const albums = await Albums.find(query).populate('author', 'name');
   res.send(albums);
 });
 
 router.get('/:id', async (req , res) => {
   const album = await Albums.findById(req.params.id).populate('author', 'name');
   res.send(album);
+});
+
+router.get('/withArtist/:id', async (req , res) => {
+  const albumWithArtist = await Albums.find({author: {_id: req.params.id}}).populate('author', 'name information');
+  res.send(albumWithArtist);
 });
 
 router.post('/', upload.single('image'), async (req , res, next) => {
