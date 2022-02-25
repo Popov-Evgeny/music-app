@@ -1,1 +1,18 @@
-<p>albums works!</p>
+<div>
+  <h2>Artists</h2>
+  <div fxLayout="row wrap">
+    <div  fxFlex.xs="100%"
+          fxFlex.sm="50%"
+          fxFlex.lt-lg="33%"
+          fxFlex="25%"
+          *ngFor="let album of albums | async">
+      <mat-card class="card">
+        <div class="card__image-block">
+          <img mat-card-image class="card__image" [src]="apiUrl + '/uploads/' + album.image" alt="Photo of {{ album.name }}">
+        </div>
+        <mat-card-title class="card__title">{{ album.name }}</mat-card-title>
+        <mat-card-subtitle class="card__subtitle">{{ album.year }} г.</mat-card-subtitle>
+      </mat-card>
+    </div>
+  </div>
+</div>

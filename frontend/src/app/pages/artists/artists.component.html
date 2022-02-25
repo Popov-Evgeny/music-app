@@ -1,18 +1,20 @@
-<div fxLayout="row wrap">
-  <div  fxFlex.xs="100%"
-        fxFlex.sm="50%"
-        fxFlex.lt-lg="33%"
-        fxFlex="25%"
-        *ngFor="let artist of arr">
-    <mat-card class="card">
-      <div class="card__image-block">
-        <img mat-card-image class="card__image" [src]="apiUrl + '/uploads/' + artist.image" alt="Photo of {{ artist.name }}">
-      </div>
-      <mat-card-title class="card__title">{{ artist.name }}</mat-card-title>
-      <mat-divider inset></mat-divider>
-      <mat-card-actions class="card__button-block">
-        <a routerLink="/" mat-raised-button color="accent" class="card__button-block-button-view">view</a>
-      </mat-card-actions>
-    </mat-card>
+<div>
+  <h2 class="artist-title">All artists</h2>
+  <div fxLayout="row wrap">
+    <div  fxFlex.xs="100%"
+          fxFlex.sm="50%"
+          fxFlex.lt-lg="33%"
+          fxFlex="25%"
+          *ngFor="let artist of artists | async">
+      <a [routerLink]="[artist._id, artist.name, 'albums']">
+        <mat-card class="card">
+          <div class="card__image-block">
+            <img mat-card-image class="card__image" [src]="apiUrl + '/uploads/' + artist.image" alt="Photo of {{ artist.name }}">
+          </div>
+          <mat-card-title class="card__title">{{ artist.name }}</mat-card-title>
+          <mat-divider inset></mat-divider>
+        </mat-card>
+      </a>
+    </div>
   </div>
 </div>

@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MusicService } from '../../services/music.service';
+import { AlbumModel } from '../../models/album.model';
+import { environment } from '../../../environments/environment';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/types';
+import { fetchAlbumRequest } from '../../store/album.actions';
 
 @Component({
   selector: 'app-albums',
@@ -6,10 +14,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./albums.component.sass']
 })
 export class AlbumsComponent implements OnInit {
+  albums: Observable<AlbumModel[]>;
+  loading: Observable<boolean>;
+  error: Observable<null | string>;
+  apiUrl = environment.apiUrl
 
-  constructor() { }
+  constructor(private musicService: MusicService, private route: ActivatedRoute, private store: Store<AppState>) {
+    this.albums = this.store.select(state => state.albums.albums);
+    this.loading = this.store.select( state => state.albums.fetchLoading);
+    this.error = this.store.select( state => state.albums.fetchError);
+  }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const artistId = {
+        id: params['id']
+      }
+      this.store.dispatch(fetchAlbumRequest(artistId))
+    });
   }
 
 }

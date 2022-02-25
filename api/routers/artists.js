@@ -40,7 +40,6 @@ router.post('/', upload.single('image'), async (req , res, next) => {
     }
 
     const artist = new Artist(artistData);
-
     await artist.save();
 
     return res.send({message: 'Added new artist in database'});

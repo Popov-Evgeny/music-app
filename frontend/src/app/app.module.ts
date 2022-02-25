@@ -18,6 +18,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ArtistsComponent } from './pages/artists/artists.component';
 import { AlbumsComponent } from './pages/albums/albums.component';
 import { MatCardModule } from '@angular/material/card';
+import { artistsReducer } from './store/artist.reducer';
+import { ArtistEffects } from './store/artist.effects';
+import { AlbumsEffects } from './store/album.effects';
+import { albumsReducer } from './store/album.reducer';
 
 @NgModule({
   declarations: [
@@ -38,8 +42,11 @@ import { MatCardModule } from '@angular/material/card';
         MatSidenavModule,
         MatIconModule,
         MatListModule,
-        StoreModule.forRoot({}, {}),
-        EffectsModule.forRoot([]),
+        StoreModule.forRoot({
+          artists: artistsReducer,
+          albums: albumsReducer
+        }, {}),
+        EffectsModule.forRoot([ArtistEffects, AlbumsEffects]),
         MatCardModule
     ],
   providers: [],

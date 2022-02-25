@@ -4,6 +4,7 @@ const {nanoid} = require('nanoid');
 const config = require("../config");
 const path = require("path");
 const Albums = require("../models/Album");
+const Artist = require("../models/Artist");
 
 
 const router = express.Router();
@@ -20,13 +21,10 @@ const storage = multer.diskStorage({
 const upload = multer({storage});
 
 router.get('/', async (req , res) => {
-
   const query = {};
-
   if (req.query.artist){
     query.author = {_id: req.query.artist};
   }
-
   const albums = await Albums.find(query).populate('author', 'name');
   res.send(albums);
 });

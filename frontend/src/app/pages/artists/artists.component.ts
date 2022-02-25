@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MusicService } from '../../services/music.service';
 import { ArtistModel } from '../../models/artist.model';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/types';
+import { Observable } from 'rxjs';
+import { fetchArtistRequest } from '../../store/artist.actions';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -9,15 +12,18 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./artists.component.sass']
 })
 export class ArtistsComponent implements OnInit {
-  arr!: ArtistModel[];
-  apiUrl = environment.apiUrl;
+  artists: Observable<ArtistModel[]>;
+  loading: Observable<boolean>;
+  error: Observable<null | string>;
+  apiUrl = environment.apiUrl
 
-  constructor(private musicService: MusicService) { }
-
-  ngOnInit(): void {
-    this.musicService.getArtists().subscribe( result => {
-      this.arr = result;
-    })
+  constructor(private store: Store<AppState>) {
+    this.artists = store.select( state => state.artists.artists);
+    this.loading = store.select( state => state.artists.fetchLoading);
+    this.error = store.select( state => state.artists.fetchError);
   }
 
+  ngOnInit(): void {
+    this.store.dispatch(fetchArtistRequest());
+  }
 }
