@@ -5,6 +5,7 @@ const app = express();
 const config = require('./config');
 const artists = require('./routers/artists');
 const albums = require('./routers/albums');
+const tracks = require('./routers/tracks');
 
 const port = 8000;
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.static('public'));
 app.use('/artists', artists);
 app.use('/albums', albums);
+app.use('/tracks', tracks);
 
 
 const run = async () => {

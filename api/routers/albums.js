@@ -4,8 +4,6 @@ const {nanoid} = require('nanoid');
 const config = require("../config");
 const path = require("path");
 const Albums = require("../models/Album");
-const Artist = require("../models/Artist");
-
 
 const router = express.Router();
 
