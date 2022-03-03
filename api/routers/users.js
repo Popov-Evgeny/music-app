@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const User = require('../models/User');
-const bcrypt = require('bcrypt');
 
 const router = express.Router();
 
@@ -13,6 +12,7 @@ router.post('/', async (req, res, next) => {
     }
 
     const user = new User(req.body);
+    user.generateToken();
 
     await user.save();
 
@@ -27,20 +27,26 @@ router.post('/', async (req, res, next) => {
 });
 
 router.post('/sessions', async (req, res, next) => {
-  const user = await User.findOne({name: req.body.name});
+  try {
+    const user = await User.findOne({name: req.body.name});
 
-  if (!user) {
-    return res.status(400).send({error: 'User not found'})
+    if (!user) {
+      return res.status(400).send({error: 'User not found'})
+    }
+
+    const isMatch = await user.checkPassword(req.body.password);
+
+    if(!isMatch) {
+      return res.status(400).send({error: 'Password is wrong'});
+    }
+
+    user.generateToken();
+    await user.save();
+
+    return res.send({token: user.token});
+  } catch (e) {
+    return next(e);
   }
-
-  const isMatch = await bcrypt.compare(req.body.password, user.password);
-
-  if(!isMatch) {
-    return res.status(400).send({error: 'Password is wrong'});
-  }
-
-  return res.send({message: 'Username and password correct!'});
-
 });
 
 
