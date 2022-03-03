@@ -12,10 +12,7 @@ const TrackHistorySchema = new Schema({
     ref: 'Track',
     required: true
   },
-  datetime: {
-    type: String,
-    required: true
-  }
+  datetime: String
 });
 
 const TrackHistory = mongoose.model('TrackHistory', TrackHistorySchema);

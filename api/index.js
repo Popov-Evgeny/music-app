@@ -7,6 +7,7 @@ const artists = require('./routers/artists');
 const albums = require('./routers/albums');
 const tracks = require('./routers/tracks');
 const users = require('./routers/users');
+const tHistory = require('./routers/trackhistory');
 
 const port = 8000;
 
@@ -17,6 +18,7 @@ app.use('/artists', artists);
 app.use('/albums', albums);
 app.use('/tracks', tracks);
 app.use('/users', users);
+app.use('/track_history', tHistory);
 
 
 const run = async () => {
