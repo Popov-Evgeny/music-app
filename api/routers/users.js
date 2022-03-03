@@ -45,6 +45,9 @@ router.post('/sessions', async (req, res, next) => {
 
     return res.send({token: user.token});
   } catch (e) {
+    if (e instanceof mongoose.Error.ValidationError) {
+      return res.status(400).send(e);
+    }
     return next(e);
   }
 });
