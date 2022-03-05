@@ -16,11 +16,11 @@ router.get('/', async (req, res, next) => {
    }
 
    if (req.query.artist) {
-         const albums = await Album.find({author: {_id: req.query.artist}});
+     const albums = await Album.find({author: {_id: req.query.artist}});
          for (let album of albums) {
            artistsTracks= await Track.find({album: {_id: album._id}});
          }
-         return res.send(artistsTracks);
+     return res.send(artistsTracks);
    }
    const tracks = await Track.find(query).populate('album', 'name');
    return res.send(tracks);

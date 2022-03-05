@@ -14,11 +14,16 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button mat-icon-button class="menu-btn" (click)="drawer.toggle()">
-        <span class="material-icons">queue_music</span>
-      </button>
-      <a class="logo" routerLink="/">Music.FM <span class="material-icons">headset</span></a>
+    <mat-toolbar class="mat-toolbar" color="primary">
+      <div class="logo-block">
+        <button mat-icon-button class="menu-btn" (click)="drawer.toggle()">
+          <span class="material-icons">queue_music</span>
+        </button>
+        <a class="logo" routerLink="/">Music.FM <span class="material-icons">headset</span></a>
+      </div>
+      <nav>
+        <a mat-raised-button color="accent" routerLink="/register">REGISTER</a>
+      </nav>
     </mat-toolbar>
     <div class="content">
       <ng-content></ng-content>

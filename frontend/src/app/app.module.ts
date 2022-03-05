@@ -24,6 +24,7 @@ import { AlbumsEffects } from './store/album.effects';
 import { albumsReducer } from './store/album.reducer';
 import { NotFoundComponent } from './not-found.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     LayoutComponent,
     ArtistsComponent,
     AlbumsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
