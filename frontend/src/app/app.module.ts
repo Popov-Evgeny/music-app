@@ -25,6 +25,11 @@ import { albumsReducer } from './store/album.reducer';
 import { NotFoundComponent } from './not-found.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RegisterComponent } from './pages/register/register.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { ValidatePasswordDirective } from './validate-password.directive';
+import { FileInputComponent } from './ui/file-input/file-input.component';
 
 @NgModule({
   declarations: [
@@ -33,13 +38,16 @@ import { RegisterComponent } from './pages/register/register.component';
     ArtistsComponent,
     AlbumsComponent,
     NotFoundComponent,
-    RegisterComponent
+    RegisterComponent,
+    ValidatePasswordDirective,
+    FileInputComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
+    FormsModule,
     FlexLayoutModule,
     HttpClientModule,
     MatToolbarModule,
@@ -53,7 +61,10 @@ import { RegisterComponent } from './pages/register/register.component';
     }, {}),
     EffectsModule.forRoot([ArtistEffects, AlbumsEffects]),
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

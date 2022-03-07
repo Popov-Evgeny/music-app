@@ -1,1 +1,66 @@
-<p>register works!</p>
+<mat-card class="form-block">
+  <mat-card-title class="form-block__form-title">Register</mat-card-title>
+  <mat-card-content class="form-wrapper">
+    <form #form="ngForm" autocomplete="off" class="reg-form" [appPassword]="['password', 'passwordRepeat']">
+      <mat-form-field appearance="outline" class="reg-form__element-wrapper">
+        <mat-label class="reg-form__label">Email</mat-label>
+        <input
+          type="email" name="email" autocomplete="username" class="reg-form__element"
+          email required matInput ngModel #email="ngModel"
+        />
+        <mat-error
+          class="reg-form__element-error" *ngIf="email.touched && email.hasError('required')"
+        >Email is required!</mat-error>
+        <mat-error
+          class="reg-form__element-error" *ngIf="email.touched && email.hasError('email')"
+        >Wrong email address!</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="reg-form__element-wrapper">
+        <mat-label class="reg-form__label">Display name</mat-label>
+        <input
+          type="text" name="name" autocomplete="username" class="reg-form__element"
+          required matInput ngModel #displayName="ngModel"
+        />
+        <mat-error
+          class="reg-form__element-error" *ngIf="email.touched && displayName.hasError('required')"
+        >Display name is required!</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="reg-form__element-wrapper">
+        <mat-label class="reg-form__label">Password</mat-label>
+        <input
+          type="password" name="password" autocomplete="new-password" class="reg-form__element"
+          required matInput ngModel #password="ngModel"
+        />
+        <mat-error
+          class="reg-form__element-error" *ngIf="password.touched && password.hasError('required')"
+        >Password is required!</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="reg-form__element-wrapper">
+        <mat-label class="reg-form__label">Repeat password</mat-label>
+        <input
+          type="password" name="passwordRepeat" autocomplete="new-password" class="reg-form__element"
+          required matInput ngModel #passwordRepeat="ngModel"
+        />
+        <mat-error
+          class="reg-form__element-error" *ngIf="passwordRepeat.touched && passwordRepeat.hasError('required')"
+        >Repeat password is required!</mat-error>
+      </mat-form-field>
+      <mat-error
+        class="identical-error" *ngIf="passwordRepeat.touched && form.errors?.['identical']"
+      >Passwords should match!
+      </mat-error>
+      <mat-form-field appearance="outline">
+        <mat-label>Image</mat-label>
+        <app-file-input name="image" ngModel></app-file-input>
+      </mat-form-field>
+      <div>
+        <button
+          type="submit"
+          mat-button
+          class="reg-form__reg-btn"
+          [disabled]="form.invalid"
+        >REGISTER</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
