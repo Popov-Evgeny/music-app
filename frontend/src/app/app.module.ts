@@ -30,6 +30,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { ValidatePasswordDirective } from './validate-password.directive';
 import { FileInputComponent } from './ui/file-input/file-input.component';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { UsersEffects } from './store/users.effects';
+import { userReducer } from './store/users.reducer';
 
 @NgModule({
   declarations: [
@@ -57,14 +60,16 @@ import { FileInputComponent } from './ui/file-input/file-input.component';
     MatListModule,
     StoreModule.forRoot({
       artists: artistsReducer,
-      albums: albumsReducer
+      albums: albumsReducer,
+      users: userReducer
     }, {}),
-    EffectsModule.forRoot([ArtistEffects, AlbumsEffects]),
+    EffectsModule.forRoot([ArtistEffects, AlbumsEffects, UsersEffects]),
     MatCardModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

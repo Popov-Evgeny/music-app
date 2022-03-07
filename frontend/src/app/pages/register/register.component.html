@@ -1,7 +1,7 @@
 <mat-card class="form-block">
   <mat-card-title class="form-block__form-title">Register</mat-card-title>
   <mat-card-content class="form-wrapper">
-    <form #form="ngForm" autocomplete="off" class="reg-form" [appPassword]="['password', 'passwordRepeat']">
+    <form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit()" class="reg-form" [appPassword]="['password', 'passwordRepeat']">
       <mat-form-field appearance="outline" class="reg-form__element-wrapper">
         <mat-label class="reg-form__label">Email</mat-label>
         <input
@@ -18,11 +18,11 @@
       <mat-form-field appearance="outline" class="reg-form__element-wrapper">
         <mat-label class="reg-form__label">Display name</mat-label>
         <input
-          type="text" name="name" autocomplete="username" class="reg-form__element"
-          required matInput ngModel #displayName="ngModel"
+          type="text" name="displayname" autocomplete="username" class="reg-form__element"
+          required matInput ngModel #displayname="ngModel"
         />
         <mat-error
-          class="reg-form__element-error" *ngIf="email.touched && displayName.hasError('required')"
+          class="reg-form__element-error" *ngIf="displayname.touched && displayname.hasError('required')"
         >Display name is required!</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline" class="reg-form__element-wrapper">
@@ -50,8 +50,8 @@
       >Passwords should match!
       </mat-error>
       <mat-form-field appearance="outline">
-        <mat-label>Image</mat-label>
-        <app-file-input name="image" ngModel></app-file-input>
+        <mat-label>Avatar</mat-label>
+        <app-file-input name="avatar" ngModel></app-file-input>
       </mat-form-field>
       <div>
         <button

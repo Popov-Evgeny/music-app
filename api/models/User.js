@@ -8,9 +8,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    validate : {
-      validate: async value => {
-        const user = await User.find({email: value});
+    validate: {
+      validator: async value => {
+        const user = await User.findOne({email: value});
         if (user) return false;
       },
       message: 'This user is already registered'
