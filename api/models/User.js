@@ -4,15 +4,27 @@ const {nanoid} = require('nanoid');
 
 const UserSchema = new mongoose.Schema({
 
-  name: {
+  email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    validate : {
+      validate: async value => {
+        const user = await User.find({email: value});
+        if (user) return false;
+      },
+      message: 'This user is already registered'
+    }
   },
   password: {
     type: String,
     required: true
   },
+  displayname: {
+    type: String,
+    required: true
+  },
+  avatar: null | String,
   token: {
     type: String,
     required: true,
