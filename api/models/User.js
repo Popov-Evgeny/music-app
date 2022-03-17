@@ -20,11 +20,19 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  displayname: {
+  name: {
     type: String,
     required: true
   },
   avatar: null | String,
+
+  role: {
+    type: String,
+    required: true,
+    default: 'user',
+    enum: ['user', 'admin']
+  },
+
   token: {
     type: String,
     required: true,

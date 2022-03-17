@@ -4,33 +4,81 @@
   box-sizing: border-box
   font-family: 'Josefin Sans', sans-serif
 
+.sidenav-container
+  height: 100%
+
+.sidenav
+  width: 200px
+  background: black
+  box-shadow:  0 0 15px -2px white
+
+.sidenav-menu
+  display: flex
+
+.sidenav-btn
+  margin: 10px 8px
+
+.sidenav .mat-toolbar
+  background: inherit
+
+.mat-toolbar.mat-primary
+  position: sticky
+  top: 0
+  z-index: 1
+  box-shadow: 0 0 10px 2px white
+
+.mat-toolbar
+  display: flex
+  justify-content: space-between
+  background: black
+
+.menu-btn
+  border: 2px solid white
+  border-radius: 5px
+
+mat-icon
+  margin-bottom: 7px
+  color: white
+
+.logo-block
+  display: flex
+
+.logo
+  display: flex
+  font-weight: 700
+  letter-spacing: 1px
+  text-decoration: none
+  color: white
+  margin: 0 15px
+  padding-top: 8px
+
+.content
+  padding: 15px 20px
+
+.material-icons
+  font-size: 30px
+  padding-bottom: 7px
+
+
 .card
   text-decoration: none
-
-  @media screen and (min-width: 400px)
-    &__card-item:hover
-      box-shadow: 0 0 10px 3px white
-      color: black
-      transform: scale(1.1,1.2)
-      z-index: 100
 
   &__card-item
     border: 2px solid silver
     margin: 7px
-    border-radius: 10%!important
-    background: linear-gradient(180deg, rgba(2,0,36,1) 40%, rgba(194,24,91,1) 83%, rgba(194,24,91,1) 87%)
+    border-radius: 10px!important
+
+  @media screen and (min-width: 400px)
+    &__card-item:hover
+      box-shadow: 0 0 10px 3px black
 
   &__image-block
     display: flex
     justify-content: center
-    padding: 15px
-    border-radius: 20%
 
   &__image
-    max-width: 400px
+    width: auto
     height: 330px
-    border: 1px solid silver
-    border-radius: 20%
 
   &__title
     font-weight: 700
@@ -79,12 +127,15 @@
     font-size: 24px
 
 .reg-link
-  background: rgba(0,0,0,0.58)
+  color: black
+  background: white
 
 .form-block
   text-align: center
   background: inherit
-  box-shadow: none!important
+  max-width: 500px
+  margin: 0 auto
+  box-shadow: 0 0 10px 3px silver!important
   &__form-title
     font-size: 32px
     font-style: italic
@@ -119,7 +170,7 @@
     padding: 7px
 
   &__reg-btn
-    color: white
+    color: black
     background: rgba(0,0,0,0.58)
 
 .identical-error

@@ -19,6 +19,9 @@
             class="reg-form__element-error" *ngIf="email.touched && email.hasError('email')"
           >Wrong email address!</mat-error>
         </mat-form-field>
+        <mat-error
+          class="reg-form__element-error" *ngIf="email.touched && email.hasError('serverError')"
+        >{{  email.getError('serverError') }}</mat-error>
         <mat-form-field appearance="outline" class="reg-form__element-wrapper">
           <mat-label class="reg-form__label">Display name</mat-label>
           <input
