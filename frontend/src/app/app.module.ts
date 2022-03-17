@@ -11,7 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { StoreModule } from '@ngrx/store';
+import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
@@ -30,9 +30,21 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { ValidatePasswordDirective } from './validate-password.directive';
 import { FileInputComponent } from './ui/file-input/file-input.component';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UsersEffects } from './store/users.effects';
 import { userReducer } from './store/users.reducer';
+import { LoginFormComponent } from './pages/login-form/login-form.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { localStorageSync } from 'ngrx-store-localstorage';
+
+export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
+  return localStorageSync({
+    keys: [{'users': ['user']}],
+    rehydrate: true
+  })(reducer);
+}
+
+const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [
@@ -43,7 +55,8 @@ import { userReducer } from './store/users.reducer';
     NotFoundComponent,
     RegisterComponent,
     ValidatePasswordDirective,
-    FileInputComponent
+    FileInputComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
@@ -62,14 +75,15 @@ import { userReducer } from './store/users.reducer';
       artists: artistsReducer,
       albums: albumsReducer,
       users: userReducer
-    }, {}),
+    }, {metaReducers}),
     EffectsModule.forRoot([ArtistEffects, AlbumsEffects, UsersEffects]),
     MatCardModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

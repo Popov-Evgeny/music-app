@@ -1,28 +1,31 @@
 import { UserState } from './types';
 import { createReducer, on } from '@ngrx/store';
-import { registerUserFailure, registerUserRequest, registerUserSuccess } from './users.actions';
+import {
+  loginFailure,
+  loginRequest,
+  loginSuccess, logoutUser,
+  registerUserFailure,
+  registerUserRequest,
+  registerUserSuccess
+} from './users.actions';
 
 const initialState: UserState = {
   user: null,
   registerLoading: false,
-  registerError: null
+  registerError: null,
+  loginLoading: false,
+  loginError: null
 };
 
 export  const userReducer = createReducer(
   initialState,
-  on(registerUserRequest, state => ({
-    ...state,
-      registerLoading: true,
-      registerError: null
-  })),
-  on(registerUserSuccess, (state, {user}) => ({
-    ...state,
-    registerLoading: false,
-    user
-  })),
-  on(registerUserFailure, (state, {error}) => ({
-    ...state,
-    registerLoading: false,
-    registerError: error
-  }))
+  on(registerUserRequest, state => ({...state, registerLoading: true, registerError: null})),
+  on(registerUserSuccess, (state, {user}) => ({...state, registerLoading: false, user})),
+  on(registerUserFailure, (state, {error}) => ({...state, registerLoading: false, registerError: error})),
+
+  on(loginRequest, state => ({...state, loginLoading: true, loginError: null,})),
+  on(loginSuccess, (state, {user}) => ({...state, loginLoading: false, user})),
+  on(loginFailure, (state, {error}) => ({...state, loginLoading: false, loginError: error})),
+
+  on(logoutUser, state => ({...state, user: null,}))
 )

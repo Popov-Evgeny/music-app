@@ -1,7 +1,7 @@
 export interface User {
   _id: string,
   email: string,
-  displayname: string,
+  name: string,
   avatar: null | File,
   token: string
 }
@@ -9,7 +9,7 @@ export interface User {
 export interface RegisterUserData {
   email: string,
   password: string,
-  displayname: string,
+  name: string,
   avatar: null | File
 }
 
@@ -21,6 +21,15 @@ export interface RegisterError {
   errors: {
     password: FieldError,
     email: FieldError,
-    displayname: FieldError
+    name: FieldError
   }
+}
+
+export interface LoginUserData {
+  email: string,
+  password: string,
+}
+
+export interface LoginError {
+  error: string,
 }

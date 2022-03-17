@@ -26,10 +26,10 @@
           <mat-label class="reg-form__label">Display name</mat-label>
           <input
             type="text" name="displayname" autocomplete="username" class="reg-form__element"
-            required matInput ngModel #displayname="ngModel"
+            required matInput ngModel #name="ngModel"
           />
           <mat-error
-            class="reg-form__element-error" *ngIf="displayname.touched && displayname.hasError('required')"
+            class="reg-form__element-error" *ngIf="name.touched && name.hasError('required')"
           >Display name is required!</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" class="reg-form__element-wrapper">

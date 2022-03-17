@@ -24,7 +24,7 @@ router.post('/', upload.single('avatar'), async (req, res, next) => {
     const userData = {
       email: req.body.email,
       password: req.body.password,
-      displayname: req.body.displayname,
+      name: req.body.name,
       avatar: null
     }
 
@@ -49,7 +49,8 @@ router.post('/', upload.single('avatar'), async (req, res, next) => {
 
 router.post('/sessions', async (req, res, next) => {
   try {
-    const user = await User.findOne({name: req.body.name});
+    console.log(req.body);
+    const user = await User.findOne({email: req.body.email});
 
     if (!user) {
       return res.status(400).send({error: 'User not found'})
@@ -73,10 +74,27 @@ router.post('/sessions', async (req, res, next) => {
   }
 });
 
-router.get('/', async (req, res) => {
-  let users = await User.find();
-  res.send(users)
-})
+router.delete('/sessions', async (req, res, next) => {
+  try {
+    const token = req.get('Authorization');
+    const message = {message: 'OK'};
 
+    if (!token) return res.send(message);
+
+    const user = await User.findOne({token});
+
+    if (!user) return res.send(message);
+
+    user.generateToken();
+    await user.save();
+
+    return res.send(message);
+  } catch (e) {
+    if (e instanceof mongoose.Error.ValidationError) {
+      return res.status(400).send(e);
+    }
+    return next(e);
+  }
+});
 
 module.exports = router;
