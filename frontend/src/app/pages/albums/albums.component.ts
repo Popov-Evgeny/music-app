@@ -36,5 +36,4 @@ export class AlbumsComponent implements OnInit {
       this.artistInfo = album[0]?.author.information;
     })
   }
-
 }

@@ -36,6 +36,7 @@ import { userReducer } from './store/users.reducer';
 import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import { TracksComponent } from './pages/tracks/tracks.component';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -56,7 +57,8 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     RegisterComponent,
     ValidatePasswordDirective,
     FileInputComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    TracksComponent
   ],
   imports: [
     BrowserModule,

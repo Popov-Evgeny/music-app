@@ -3,21 +3,26 @@
     <h2 class="artist-title">All albums: {{ artistName }}</h2>
     <p class="artist-subtitle">{{ artistInfo }}</p>
   </div>
-  <mat-progress-spinner class="spinner" mode="indeterminate" *ngIf=" (loading | async) else albumsArea"></mat-progress-spinner>
+  <mat-progress-spinner class="spinner" mode="indeterminate"
+                        *ngIf=" (loading | async) else albumsArea"></mat-progress-spinner>
   <ng-template #albumsArea>
     <div fxLayout="row wrap">
-      <div  fxFlex.xs="100%"
-            fxFlex.sm="50%"
-            fxFlex.lt-lg="33%"
-            fxFlex="25%"
-            *ngFor="let album of albums | async">
-        <mat-card class="card card__card-item">
-          <div class="card__image-block">
-            <img mat-card-image class="card__image" [src]="apiUrl + '/uploads/' + album.image" alt="Photo of {{ album.name }}">
-          </div>
-          <mat-card-title class="card__title"><span class="material-icons">album</span> {{ album.name }}</mat-card-title>
-          <mat-card-subtitle class="card__subtitle">{{ album.year }} г.</mat-card-subtitle>
-        </mat-card>
+      <div fxFlex.xs="100%"
+           fxFlex.sm="50%"
+           fxFlex.lt-lg="33%"
+           fxFlex="25%"
+           *ngFor="let album of albums | async">
+        <a class="card" [routerLink]="['/', album._id, album.name, 'tracks']">
+          <mat-card class="card card__card-item">
+            <div class="card__image-block">
+              <img mat-card-image class="card__image" [src]="apiUrl + '/uploads/' + album.image"
+                   alt="Photo of {{ album.name }}">
+            </div>
+            <mat-card-title class="card__title"><span class="material-icons">album</span> {{ album.name }}
+            </mat-card-title>
+            <mat-card-subtitle class="card__subtitle">{{ album.year }} г.</mat-card-subtitle>
+          </mat-card>
+        </a>
       </div>
     </div>
   </ng-template>

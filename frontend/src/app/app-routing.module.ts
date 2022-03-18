@@ -5,10 +5,12 @@ import { AlbumsComponent } from './pages/albums/albums.component';
 import { NotFoundComponent } from './not-found.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginFormComponent } from './pages/login-form/login-form.component';
+import { TracksComponent } from './pages/tracks/tracks.component';
 
 const routes: Routes = [
   { path: '', component: ArtistsComponent },
   { path: ':id/:name/albums', component: AlbumsComponent },
+  { path: ':id/:name/tracks', component: TracksComponent },
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginFormComponent},
   { path: '**', component: NotFoundComponent}
