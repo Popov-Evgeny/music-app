@@ -69,7 +69,10 @@ export  class UsersEffects {
       if (user) {
         return this.userService.logout(user.token).pipe(
           map(() => logoutUser()),
-          tap(() => this.helpers.openSnackbar('Logout successful'))
+          tap(() => {
+            this.helpers.openSnackbar('Logout successful');
+            void this.router.navigate(['/']);
+          })
         );
       }
       return NEVER;

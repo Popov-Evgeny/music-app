@@ -6,11 +6,13 @@ import { NotFoundComponent } from './not-found.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { TracksComponent } from './pages/tracks/tracks.component';
+import { TrackHistoryComponent } from './pages/track-history/track-history.component';
 
 const routes: Routes = [
   { path: '', component: ArtistsComponent },
   { path: ':id/:name/albums', component: AlbumsComponent },
-  { path: ':id/:name/tracks', component: TracksComponent },
+  { path: ':id/:author/:name/tracks', component: TracksComponent },
+  { path: 'track_history', component: TrackHistoryComponent },
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginFormComponent},
   { path: '**', component: NotFoundComponent}

@@ -9,8 +9,8 @@ export interface User {
 
 export interface RegisterUserData {
   email: string,
-  password: string,
   name: string,
+  password: string,
   avatar: null | File
 }
 

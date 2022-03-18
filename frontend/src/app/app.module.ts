@@ -42,6 +42,8 @@ import { TracksEffects } from './store/tracks.effects';
 import { MatSliderModule } from '@angular/material/slider';
 import { trackHistoryReducer } from './store/trackHistory.reducer';
 import { TrackHistoryEffects } from './store/trackHistory.effects';
+import { TrackHistoryComponent } from './pages/track-history/track-history.component';
+import { MatTableModule } from '@angular/material/table';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -63,7 +65,8 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     ValidatePasswordDirective,
     FileInputComponent,
     LoginFormComponent,
-    TracksComponent
+    TracksComponent,
+    TrackHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -93,7 +96,7 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     MatInputModule,
     MatSnackBarModule,
     MatMenuModule,
-    MatSliderModule
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
