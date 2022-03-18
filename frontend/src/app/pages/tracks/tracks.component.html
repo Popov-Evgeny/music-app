@@ -1,0 +1,15 @@
+<div>
+  <h2 class="artist-title">Album: {{ albumName }}</h2>
+</div>
+<div *ngFor="let track of tracks | async">
+  <mat-card class="card-track">
+    <div class="card-track__track-icons">
+      <span class="material-icons card-track__icon-play">play_circle</span>
+    </div>
+    <div class="card-track__items">
+      <mat-card-title class="card-track__title">{{ track.name }}</mat-card-title>
+      <mat-slider aria-label="unit(s)" class="card-track__slider"></mat-slider>
+      <mat-card-subtitle class="card-track__subtitle">{{ track.duration }}</mat-card-subtitle>
+    </div>
+  </mat-card>
+</div>

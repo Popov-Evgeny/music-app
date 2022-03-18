@@ -37,6 +37,9 @@ import { LoginFormComponent } from './pages/login-form/login-form.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { localStorageSync } from 'ngrx-store-localstorage';
 import { TracksComponent } from './pages/tracks/tracks.component';
+import { tracksReducer } from './store/tracks.reducer';
+import { TracksEffects } from './store/tracks.effects';
+import { MatSliderModule } from '@angular/material/slider';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -76,16 +79,18 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     StoreModule.forRoot({
       artists: artistsReducer,
       albums: albumsReducer,
-      users: userReducer
+      users: userReducer,
+      tracks: tracksReducer,
     }, {metaReducers}),
-    EffectsModule.forRoot([ArtistEffects, AlbumsEffects, UsersEffects]),
+    EffectsModule.forRoot([ArtistEffects, AlbumsEffects, UsersEffects, TracksEffects]),
     MatCardModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
     MatSnackBarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
