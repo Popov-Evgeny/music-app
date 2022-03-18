@@ -4,6 +4,8 @@ const {nanoid} = require('nanoid');
 const config = require("../config");
 const path = require("path");
 const Albums = require("../models/Album");
+const auth = require("../middleware/auth");
+const permit = require("../middleware/permit");
 
 const router = express.Router();
 
@@ -37,7 +39,7 @@ router.get('/withArtist/:id', async (req , res) => {
   res.send(albumWithArtist);
 });
 
-router.post('/', upload.single('image'), async (req , res, next) => {
+router.post('/', auth, permit,  upload.single('image'), async (req , res, next) => {
   try {
     if (!req.body.name) {
       return res.status(500).send({massage: 'Check if the input is correct'});

@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const Track = require('../models/Track');
 const Album = require("../models/Album");
 const Artist = require("../models/Artist");
+const auth = require("../middleware/auth");
+const permit = require("../middleware/permit");
 
 const router = express.Router();
 
@@ -53,7 +55,7 @@ router.get('/byAlbum/:albumID', async (req,res,next) => {
 });
 
 
-router.post('/', async (req, res, next) => {
+router.post('/', auth, permit,  async (req, res, next) => {
   try {
     if (!req.body.name) {
       res.status(400).send({message: 'Enter track name please'})
