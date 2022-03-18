@@ -1,30 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../environments/environment';
 import { map } from 'rxjs/operators';
-import { ApiTrackHistoryData, TrackHistoryData, TrackHistoryModel } from '../models/trackHistory.model';
+import { ApiTrackHistoryData, TrackHistoryModel } from '../models/trackHistory.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TrackHistoryService {
+
   constructor(private http: HttpClient) { }
 
-  getTrackHistory(token: string) {
-    return this.http.get<ApiTrackHistoryData[]>(env.apiUrl + '/track_history', {
-      headers: new HttpHeaders({'Authorization': token})}).pipe(map(response => {
+  getTrackHistory() {
+    return this.http.get<ApiTrackHistoryData[]>(env.apiUrl + '/track_history').pipe(map(response => {
       return response.map( trackHistoryData => {
         return new TrackHistoryModel(
           trackHistoryData._id,
           trackHistoryData.user,
           trackHistoryData.track,
-          trackHistoryData.datetime
+          trackHistoryData.datetime,
+          trackHistoryData.artist
         )});
     }))
   }
 
-  createTrackHistory(trackHistoryData: TrackHistoryData) {
-    return this.http.post(env.apiUrl + '/track_history', {track: trackHistoryData.track}, {
-      headers: new HttpHeaders({'Authorization': trackHistoryData.token})
-    })}
+  createTrackHistory(track: string) {
+    return this.http.post(env.apiUrl + '/track_history', {track})
+  }
 }

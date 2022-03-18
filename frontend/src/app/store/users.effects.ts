@@ -20,7 +20,7 @@ import { AppState } from './types';
 
 @Injectable()
 
-export  class UsersEffects {
+export class UsersEffects {
   constructor(
     private actions: Actions,
     private userService: UsersService,
@@ -28,7 +28,8 @@ export  class UsersEffects {
     private snackbar: MatSnackBar,
     private helpers: HelpersService,
     private store: Store<AppState>
-  ) {}
+  ) {
+  }
 
   registerUser = createEffect(() => this.actions.pipe(
     ofType(registerUserRequest),
@@ -38,7 +39,7 @@ export  class UsersEffects {
         this.snackbar.open('Register successful', 'OK', {duration: 4000});
         void this.router.navigate(['/']);
       }),
-      catchError( reqErr => {
+      catchError(reqErr => {
         let registerError = null;
         if (reqErr instanceof HttpErrorResponse && reqErr.status === 400) {
           registerError = reqErr.error;
@@ -64,18 +65,14 @@ export  class UsersEffects {
 
   logoutUser = createEffect(() => this.actions.pipe(
     ofType(logoutRequest),
-    withLatestFrom(this.store.select(state => state.users.user  )),
-    mergeMap(([_, user]) => {
-      if (user) {
-        return this.userService.logout(user.token).pipe(
-          map(() => logoutUser()),
-          tap(() => {
-            this.helpers.openSnackbar('Logout successful');
-            void this.router.navigate(['/']);
-          })
-        );
-      }
-      return NEVER;
+    mergeMap(() => {
+      return this.userService.logout().pipe(
+        map(() => logoutUser()),
+        tap(() => {
+          this.helpers.openSnackbar('Logout successful');
+          void this.router.navigate(['/']);
+        })
+      );
     }))
   )
 }

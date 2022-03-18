@@ -7,10 +7,7 @@ import { Observable, Subscription } from 'rxjs';
 import { TracksModel } from '../../models/tracks.model';
 import { fetchTracksRequest } from '../../store/tracks.actions';
 import { User } from '../../models/user.model';
-import { AlbumModel } from '../../models/album.model';
-import { environment } from '../../../environments/environment';
 import { createTrackHistoryRequest } from '../../store/trackHistory.actions';
-import { TrackHistoryData } from '../../models/trackHistory.model';
 
 @Component({
   selector: 'app-tracks',
@@ -26,7 +23,11 @@ export class TracksComponent implements OnInit, OnDestroy {
   userSubscription!: Subscription;
   userData!: User;
 
-  constructor(private tracksService: TracksService, private route: ActivatedRoute, private store: Store<AppState>) {
+  constructor(
+    private tracksService: TracksService,
+    private route: ActivatedRoute,
+    private store: Store<AppState>,
+  ) {
     this.tracks = this.store.select(state => state.tracks.tracks);
     this.loading = this.store.select( state => state.albums.fetchLoading);
     this.error = this.store.select( state => state.albums.fetchError);
@@ -46,11 +47,7 @@ export class TracksComponent implements OnInit, OnDestroy {
   }
 
   addToHistory(trackId: string) {
-    const trackHistoryData: TrackHistoryData = {
-      track: trackId,
-      token: this.userData.token
-    }
-    this.store.dispatch(createTrackHistoryRequest({data: trackHistoryData}))
+    this.store.dispatch(createTrackHistoryRequest({data: trackId}))
   }
 
   ngOnDestroy() {

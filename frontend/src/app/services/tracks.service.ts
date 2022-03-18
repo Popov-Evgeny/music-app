@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment as env} from '../../environments/environment';
+import { environment as env } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { ApiTracksData, TracksModel } from '../models/tracks.model';
-import { TrackHistoryData } from '../models/trackHistory.model';
 
 @Injectable({
   providedIn: 'root'

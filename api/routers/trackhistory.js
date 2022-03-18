@@ -2,23 +2,49 @@ const express = require('express');
 const mongoose = require('mongoose');
 const THistory = require('../models/TrackHistory');
 const auth = require("../middleware/auth");
-const Albums = require("../models/Album");
+const Track = require("../models/Track");
+const Album = require("../models/Album");
 
 const router = express.Router();
 
 router.get('/', auth, async (req, res, next) => {
   try {
-    const history = await THistory.find({user: req.user._id}).sort({datetime: -1}).populate('track','name');
-    let arrArtists = [];
+    const history = await THistory.find({user: req.user._id}).sort({datetime: -1}).populate('track','_id name');
 
-    for (let album of history) {
-      console.log(album.track._id);
-      const artist = await Albums.findOne({author: album.track._id}).populate('author', 'name');
-      arrArtists.push(artist)
+    const tracksId = history.map( history => history.track._id);
+
+    const albumsId = [];
+    let counterAlbum = 0;
+
+    for (let id in tracksId) {
+      const author = await Track.findOne({_id: {$in: tracksId[counterAlbum]}}).populate('album', '_id');
+      albumsId.push(author.album._id)
+      counterAlbum++
     }
 
-    console.log(arrArtists);
-    return res.send(history)
+    const authors = [];
+    let counterAuthor = 0;
+
+    for (let id in albumsId) {
+      const author = await Album.findOne({_id:  albumsId[counterAuthor]}).populate('author', 'name');
+      authors.push(author.author.name)
+      counterAuthor++
+    }
+
+    let counterArtist = 0;
+
+    const newHistory = history.map( history => {
+      const objHistory = {
+        user: history.user,
+        track: history.track,
+        datetime: history.datetime,
+        artist: authors[counterArtist]
+      }
+      counterArtist++
+      return objHistory;
+    });
+
+    return res.send(newHistory)
   } catch (e) {
     next(e);
   }

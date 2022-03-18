@@ -20,7 +20,7 @@ export class TrackHistoryEffects {
 
   fetchTrackHistory = createEffect( () => this.actions.pipe(
     ofType(fetchTrackHistoryRequest),
-    mergeMap( token => this.trackHistoryService.getTrackHistory(token.token).pipe(
+    mergeMap( () => this.trackHistoryService.getTrackHistory().pipe(
       map( trackHistory => fetchTrackHistorySuccess({trackHistory})),
       catchError(() => of(fetchTrackHistoryFailure({error: 'Error!'})))
     ))

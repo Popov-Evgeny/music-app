@@ -1,0 +1,27 @@
+<div *ngIf="( trackHistory | async)?.length === 0; else tHistory">
+  <h2>Track history is empty!</h2>
+</div>
+
+<ng-template #tHistory>
+  <div>
+    <h2 class="artist-title">Track history</h2>
+  </div>
+  <div class="table-block">
+    <table class="styled-table">
+      <thead>
+      <tr>
+        <th>Artist</th>
+        <th>Track</th>
+        <th>Date</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let history of trackHistory | async, let i = index">
+        <td>{{ history.artist}}</td>
+        <td>{{ history.track.name}}</td>
+        <td>{{ history.datetime }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>

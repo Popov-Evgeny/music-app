@@ -6,13 +6,9 @@ export class TrackHistoryModel {
       _id: string,
       name: string
     },
-    public datetime: string
+    public datetime: string,
+    public artist: string
   ) {}
-}
-
-export interface TrackHistoryData {
-  track: string,
-  token: string
 }
 
 export interface ApiTrackHistoryData {
@@ -22,5 +18,6 @@ export interface ApiTrackHistoryData {
     _id: string,
     name: string
   },
-  datetime: string
+  datetime: string,
+  artist: string
 }

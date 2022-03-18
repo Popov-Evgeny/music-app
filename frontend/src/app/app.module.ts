@@ -14,7 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ArtistsComponent } from './pages/artists/artists.component';
 import { AlbumsComponent } from './pages/albums/albums.component';
 import { MatCardModule } from '@angular/material/card';
@@ -44,6 +44,7 @@ import { trackHistoryReducer } from './store/trackHistory.reducer';
 import { TrackHistoryEffects } from './store/trackHistory.effects';
 import { TrackHistoryComponent } from './pages/track-history/track-history.component';
 import { MatTableModule } from '@angular/material/table';
+import { AuthInterceptor } from './auth.interceptor';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -98,7 +99,9 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     MatMenuModule,
     MatSliderModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
