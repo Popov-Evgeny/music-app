@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post('/', auth, async (req, res, next) => {
   try {
+    console.log(req.body);
     if (!req.body.track) {
       return res.status(400).send({error: 'Enter track Id please!'});
     }

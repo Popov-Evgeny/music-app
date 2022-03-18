@@ -49,7 +49,6 @@ router.post('/', upload.single('avatar'), async (req, res, next) => {
 
 router.post('/sessions', async (req, res, next) => {
   try {
-    console.log(req.body);
     const user = await User.findOne({email: req.body.email});
 
     if (!user) {
@@ -65,7 +64,7 @@ router.post('/sessions', async (req, res, next) => {
     user.generateToken();
     await user.save();
 
-    return res.send({token: user.token});
+    return res.send(user);
   } catch (e) {
     if (e instanceof mongoose.Error.ValidationError) {
       return res.status(400).send(e);

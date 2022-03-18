@@ -40,6 +40,8 @@ import { TracksComponent } from './pages/tracks/tracks.component';
 import { tracksReducer } from './store/tracks.reducer';
 import { TracksEffects } from './store/tracks.effects';
 import { MatSliderModule } from '@angular/material/slider';
+import { trackHistoryReducer } from './store/trackHistory.reducer';
+import { TrackHistoryEffects } from './store/trackHistory.effects';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -81,8 +83,9 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
       albums: albumsReducer,
       users: userReducer,
       tracks: tracksReducer,
+      trackHistory: trackHistoryReducer,
     }, {metaReducers}),
-    EffectsModule.forRoot([ArtistEffects, AlbumsEffects, UsersEffects, TracksEffects]),
+    EffectsModule.forRoot([ArtistEffects, AlbumsEffects, UsersEffects, TracksEffects, TrackHistoryEffects]),
     MatCardModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,

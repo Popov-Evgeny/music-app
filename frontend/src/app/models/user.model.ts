@@ -4,6 +4,7 @@ export interface User {
   name: string,
   avatar: null | File,
   token: string
+  role: string
 }
 
 export interface RegisterUserData {
