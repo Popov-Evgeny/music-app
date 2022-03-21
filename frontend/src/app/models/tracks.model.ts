@@ -8,7 +8,7 @@ export class TracksModel {
 }
 
 export interface ApiTracksData {
-  _id: string,
+  [key: string]: any,
   name: string,
   album: string,
   duration: string

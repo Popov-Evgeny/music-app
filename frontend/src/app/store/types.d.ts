@@ -31,7 +31,9 @@ export type UserState = {
 export type TracksState = {
   tracks: TracksModel[],
   fetchLoading: boolean,
-  fetchError: null | string
+  fetchError: null | string,
+  createLoading: boolean,
+  createError: null | string,
 };
 
 export type TrackHistoryState = {

@@ -55,7 +55,7 @@ router.get('/byAlbum/:albumID', async (req,res,next) => {
 });
 
 
-router.post('/', auth, permit('admin'),  async (req, res, next) => {
+router.post('/', auth, permit('admin', 'user'),  async (req, res, next) => {
   try {
     if (!req.body.name) {
       res.status(400).send({message: 'Enter track name please'})
