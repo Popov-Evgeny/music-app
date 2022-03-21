@@ -45,6 +45,12 @@ import { TrackHistoryEffects } from './store/trackHistory.effects';
 import { TrackHistoryComponent } from './pages/track-history/track-history.component';
 import { MatTableModule } from '@angular/material/table';
 import { AuthInterceptor } from './auth.interceptor';
+import { PersonalAreaComponent } from './pages/personal-area/personal-area.component';
+import { CreateNewArtistComponent } from './pages/create-new-artist/create-new-artist.component';
+import { CreateNewAlbumComponent } from './pages/create-new-album/create-new-album.component';
+import { CreateNewTrackComponent } from './pages/create-new-track/create-new-track.component';
+import { MatSelectModule } from '@angular/material/select';
+import { HomeComponent } from './pages/home/home.component';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -67,38 +73,44 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     FileInputComponent,
     LoginFormComponent,
     TracksComponent,
-    TrackHistoryComponent
+    TrackHistoryComponent,
+    PersonalAreaComponent,
+    CreateNewArtistComponent,
+    CreateNewAlbumComponent,
+    CreateNewTrackComponent,
+    HomeComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    LayoutModule,
-    FormsModule,
-    FlexLayoutModule,
-    HttpClientModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    StoreModule.forRoot({
-      artists: artistsReducer,
-      albums: albumsReducer,
-      users: userReducer,
-      tracks: tracksReducer,
-      trackHistory: trackHistoryReducer,
-    }, {metaReducers}),
-    EffectsModule.forRoot([ArtistEffects, AlbumsEffects, UsersEffects, TracksEffects, TrackHistoryEffects]),
-    MatCardModule,
-    MatProgressSpinnerModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatSnackBarModule,
-    MatMenuModule,
-    MatSliderModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        LayoutModule,
+        FormsModule,
+        FlexLayoutModule,
+        HttpClientModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        StoreModule.forRoot({
+            artists: artistsReducer,
+            albums: albumsReducer,
+            users: userReducer,
+            tracks: tracksReducer,
+            trackHistory: trackHistoryReducer,
+        }, {metaReducers}),
+        EffectsModule.forRoot([ArtistEffects, AlbumsEffects, UsersEffects, TracksEffects, TrackHistoryEffects]),
+        MatCardModule,
+        MatProgressSpinnerModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatSnackBarModule,
+        MatMenuModule,
+        MatSliderModule,
+        MatSelectModule,
+    ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],

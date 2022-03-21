@@ -24,7 +24,6 @@ export class TracksComponent implements OnInit, OnDestroy {
   userData!: User;
 
   constructor(
-    private tracksService: TracksService,
     private route: ActivatedRoute,
     private store: Store<AppState>,
   ) {

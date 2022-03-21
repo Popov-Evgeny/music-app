@@ -68,7 +68,8 @@ router.post('/', auth, permit('admin'),  async (req, res, next) => {
     const trackData = {
       name: req.body.name,
       album: req.body.album,
-      duration: req.body.duration
+      duration: req.body.duration,
+      isPublished: false
     }
 
     const track = new Track(trackData);

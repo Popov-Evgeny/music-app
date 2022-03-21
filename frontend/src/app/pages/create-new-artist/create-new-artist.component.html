@@ -1,0 +1,30 @@
+<mat-card class="form-block">
+  <mat-card-title class="form-block__form-title">Create new artist</mat-card-title>
+  <mat-card-content class="form-wrapper">
+    <form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit()" class="reg-form">
+      <mat-form-field appearance="outline" class="reg-form__element-wrapper">
+        <mat-label class="reg-form__label">Artist name</mat-label>
+        <input type="text" name="name" class="reg-form__element" required matInput ngModel #name="ngModel"/>
+        <mat-error class="reg-form__element-error" *ngIf="name.touched && name.hasError('required')">Name is required!</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="reg-form__element-wrapper">
+        <mat-label class="reg-form__label">Information</mat-label>
+        <textarea type="text" name="information" class="reg-form__element" required matInput ngModel #information="ngModel"></textarea>
+        <mat-error class="reg-form__element-error" *ngIf="information.touched && information.hasError('required')">Information name is required!</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Artist photo</mat-label>
+        <app-file-input name="avatar" required ngModel></app-file-input>
+      </mat-form-field>
+      <div>
+        <button
+          type="submit"
+          mat-button
+          class="reg-form__reg-btn"
+          [disabled]="form.invalid"
+        >Create
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

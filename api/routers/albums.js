@@ -49,7 +49,8 @@ router.post('/', auth, permit('admin'),  upload.single('image'), async (req , re
       name: req.body.name,
       author: req.body.author,
       year: req.body.year,
-      image: null
+      image: null,
+      isPublished: false
     }
 
     if (req.file) {

@@ -10,7 +10,7 @@
 .sidenav
   width: 200px
   background: black
-  box-shadow:  0 0 15px -2px white
+  box-shadow: 0 0 5px 3px silver inset
 
 .sidenav-menu
   display: flex
@@ -31,8 +31,10 @@
   display: flex
   justify-content: space-between
   background: black
+  border-top: 1px solid white
+  border-bottom: 1px solid white
 
-.menu-btn
+.sidenav-btn
   border: 2px solid white
   border-radius: 5px
 
@@ -52,12 +54,19 @@ mat-icon
   margin: 0 15px
   padding-top: 8px
 
-.content
-  padding: 15px 20px
-
 .material-icons
   font-size: 30px
   padding-bottom: 7px
+
+.user-menu
+  display: flex
+  width: 200px
+  justify-content: center
+  border: 2px solid white
+  background: black
+  margin: 5px 25px
+  border-radius: 15px 0 15px 0!important
+  box-shadow: 0 0 5px 3px silver inset
 
 
 .card
@@ -66,7 +75,7 @@ mat-icon
   &__card-item
     border: 2px solid silver
     margin: 7px
-    border-radius: 10px!important
+    border-radius: 15px 0 15px 0 !important
 
   @media screen and (min-width: 400px)
     &__card-item:hover
@@ -79,6 +88,8 @@ mat-icon
   &__image
     width: auto
     height: 330px
+    border-radius: 10px 0 0 0 !important
+
 
   &__title
     font-weight: 700
@@ -171,7 +182,7 @@ mat-icon
     padding: 7px
 
   &__reg-btn
-    color: black
+    color: black!important
     background: white
 
 .identical-error
@@ -261,4 +272,37 @@ mat-icon
 .styled-table td
   background: silver
 
+.cabinet-block
+  padding: 100px 15px
 
+  &__title
+    font-size: 46px!important
+    font-weight: bold
+    font-style: italic!important
+    text-align: center!important
+    font-family: 'Josefin Sans', sans-serif!important
+
+.cabinet
+  display: flex
+  justify-content: space-around
+  padding: 90px 15px
+  &__card
+    width: 25%
+    height: auto
+    text-decoration: none
+
+  &__card-item
+    padding: 30px 10px 30px!important
+    border-radius: 10% !important
+
+  &__card-title
+    font-size: 28px
+    font-weight: bold
+    font-style: italic
+    text-align: center!important
+    padding: 15px
+
+  &__card-image
+    width: 250px!important
+    height: 255px
+    margin: 0 auto 20px!important

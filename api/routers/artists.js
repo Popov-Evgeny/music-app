@@ -34,7 +34,8 @@ router.post('/', auth, permit('admin'), upload.single('image'), async (req , res
     const artistData = {
       name: req.body.name,
       information: req.body.information,
-      image: null
+      image: null,
+      isPublished: false
     }
 
     if (req.file) {
