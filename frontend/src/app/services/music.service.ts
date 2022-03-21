@@ -13,7 +13,7 @@ export class MusicService {
   constructor(private http: HttpClient) { }
 
   getArtists() {
-    return this.http.get<ApiArtistsData[]>(environment.apiUrl + '/artists').pipe(map(response => {
+    return this.http.get<ArtistModel []>(environment.apiUrl + '/artists').pipe(map(response => {
       return response.map( artistData => {
         return new ArtistModel(
           artistData._id,
@@ -22,6 +22,17 @@ export class MusicService {
           artistData.image
         )});
     }))
+  }
+
+  createArtist(data: ApiArtistsData) {
+    const formData = new FormData();
+
+    Object.keys(data).forEach(key => {
+      if (data[key] !== null) {
+        formData.append(key, data[key]);
+      }
+    });
+    return this.http.post(environment.apiUrl + '/artists', formData);
   }
 
   getArtistsAlbums(id: string) {

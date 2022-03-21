@@ -8,7 +8,9 @@ import { TrackHistoryModel } from '../models/trackHistory.model';
 export type ArtistsState = {
   artists: ArtistModel[],
   fetchLoading: boolean,
-  fetchError: null | string
+  fetchError: null | string,
+  createLoading: boolean,
+  createError: null | string,
 };
 
 export type AlbumsState = {

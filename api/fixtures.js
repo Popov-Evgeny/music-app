@@ -39,36 +39,6 @@ const run = async () => {
     information: 'Public artist',
     image: 'linkin-park.jpg',
     isPublished: false
-  },{
-    name: 'Eminem',
-    information: 'Public artist',
-    image: 'Eminem.jpg',
-    isPublished: false
-  }, {
-    name: 'Linkin-park',
-    information: 'Public artist',
-    image: 'linkin-park.jpg',
-    isPublished: false
-  },{
-    name: 'Eminem',
-    information: 'Public artist',
-    image: 'Eminem.jpg',
-    isPublished: false
-  }, {
-    name: 'Linkin-park',
-    information: 'Public artist',
-    image: 'linkin-park.jpg',
-    isPublished: false
-  },{
-    name: 'Eminem',
-    information: 'Public artist',
-    image: 'Eminem.jpg',
-    isPublished: false
-  }, {
-    name: 'Linkin-park',
-    information: 'Public artist',
-    image: 'linkin-park.jpg',
-    isPublished: false
   });
 
 

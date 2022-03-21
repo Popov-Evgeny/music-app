@@ -8,7 +8,7 @@ export class ArtistModel {
 }
 
 export interface ApiArtistsData {
-  _id: string,
+  [key: string]: any,
   name: string,
   information: string,
   image: string

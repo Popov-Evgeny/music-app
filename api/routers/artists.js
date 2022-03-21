@@ -25,7 +25,7 @@ router.get('/', async (req , res) => {
   res.send(artists);
 });
 
-router.post('/', auth, permit('admin'), upload.single('image'), async (req , res, next) => {
+router.post('/', auth, permit('admin', 'user'), upload.single('image'), async (req , res, next) => {
   try {
     if (!req.body.name) {
       return res.status(500).send({massage: 'Check if the input is correct'});
