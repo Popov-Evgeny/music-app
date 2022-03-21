@@ -12,6 +12,7 @@ import { CreateNewArtistComponent } from './pages/create-new-artist/create-new-a
 import { CreateNewAlbumComponent } from './pages/create-new-album/create-new-album.component';
 import { CreateNewTrackComponent } from './pages/create-new-track/create-new-track.component';
 import { HomeComponent } from './pages/home/home.component';
+import { RoleGuardService } from './services/role-guard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,9 +23,9 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginFormComponent},
   {path: 'Personal-Area', component: PersonalAreaComponent},
-  {path: 'create-new-artist', component: CreateNewArtistComponent},
-  {path: 'create-new-album', component: CreateNewAlbumComponent},
-  {path: 'create-new-track', component: CreateNewTrackComponent},
+  {path: 'create-new-artist', component: CreateNewArtistComponent, canActivate: [RoleGuardService], data: {roles: ['user', 'admin']}},
+  {path: 'create-new-album', component: CreateNewAlbumComponent, canActivate: [RoleGuardService], data: {roles: ['user', 'admin']}},
+  {path: 'create-new-track', component: CreateNewTrackComponent, canActivate: [RoleGuardService], data: {roles: ['user', 'admin']}},
   { path: '**', component: NotFoundComponent}
 ];
 

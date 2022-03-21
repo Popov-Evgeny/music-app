@@ -19,7 +19,8 @@ export class MusicService {
           artistData._id,
           artistData.name,
           artistData.information,
-          artistData.image
+          artistData.image,
+          artistData.isPublished
         )});
     }))
   }
@@ -43,7 +44,8 @@ export class MusicService {
           albumData.name,
           albumData.author,
           albumData.year,
-          albumData.image
+          albumData.image,
+          albumData.isPublished
         )});
     }))
   }

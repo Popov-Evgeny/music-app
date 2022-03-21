@@ -4,7 +4,8 @@ export class AlbumModel {
     public name: string,
     public author: { _id: string, name: string, information: string },
     public year: string,
-    public image: string
+    public image: string,
+    public isPublished: boolean
   ) {}
 }
 

@@ -3,7 +3,8 @@ export class TracksModel {
     public _id: string,
     public name: string,
     public album: string,
-    public duration: string
+    public duration: string,
+    public isPublished: boolean
   ) {}
 }
 

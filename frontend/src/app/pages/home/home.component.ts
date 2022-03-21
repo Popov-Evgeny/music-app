@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.store.dispatch(fetchArtistRequest());
     this.artistsSubscription = this.artists.subscribe( arrArtists => {
-        this.arrArtists = arrArtists.slice(0, 4);
+        this.arrArtists = arrArtists.slice(0, 3);
     })
   }
 

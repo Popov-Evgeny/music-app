@@ -19,7 +19,8 @@ export class TracksService {
           tracksData._id,
           tracksData.name,
           tracksData.album,
-          tracksData.duration
+          tracksData.duration,
+          tracksData.isPublished
         )});
     }))
   }

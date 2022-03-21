@@ -16,13 +16,13 @@
           type="email" name="email" autocomplete="username"
           email required matInput ngModel #email="ngModel"
         />
-        <mat-error *ngIf="email.touched && email.hasError('required')">
-          Email is required!
-        </mat-error>
-        <mat-error *ngIf="email.touched && email.hasError('email')">
-          Enter a correct email!
-        </mat-error>
       </mat-form-field>
+      <mat-error class="mat-error" *ngIf="email.touched && email.hasError('required')">
+        Email is required!
+      </mat-error>
+      <mat-error class="mat-error" *ngIf="email.touched && email.hasError('email')">
+        Enter a correct email!
+      </mat-error>
 
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
@@ -30,10 +30,10 @@
           type="password" name="password" autocomplete="current-password"
           required matInput ngModel #password="ngModel"
         />
-        <mat-error *ngIf="password.touched && password.hasError('required')">
-          The password is required!
-        </mat-error>
       </mat-form-field>
+      <mat-error class="mat-error" *ngIf="password.touched && password.hasError('required')">
+        The password is required!
+      </mat-error>
 
       <a routerLink="/register" class="register-link">Don't have an account? Sign Up</a>
 

@@ -7,7 +7,7 @@
   <h3 class="chart-main__title">Top tracks</h3>
   <div class="player-block">
     <span class="material-icons player-block__play-icon">play_arrow</span>
-    <mat-slider aria-label="unit(s)" class="player-block__slider"></mat-slider>
+    <mat-slider aria-label="unit(s)" class="player-block__slider" value="33" disabled></mat-slider>
     <div class="track-time">
       <p class="track-time__time">00:33</p>
       <p>—</p>
@@ -25,7 +25,7 @@
   </div>
 </section>
 <section class="favorite-block">
-  <h3 class="favorite-block__title">Lorem ipsum dolor sit amet.</h3>
+  <h3 class="favorite-block__title">Your favorite authors and bands</h3>
   <div class="artists-block">
     <div fxLayout="row wrap" fxLayoutAlign="center">
       <div fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.lt-lg="33%" fxFlex="20%" *ngFor="let artist of arrArtists">

@@ -3,7 +3,8 @@ export class ArtistModel {
     public _id: string,
     public name: string,
     public information: string,
-    public image: string
+    public image: string,
+    public isPublished: boolean
   ) {}
 }
 
