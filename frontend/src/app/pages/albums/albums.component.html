@@ -15,8 +15,8 @@
         <a class="card" [routerLink]="['/', album._id, album.author.name, album.name, 'tracks']">
           <mat-card class="card card__card-item">
             <div class="card__image-block">
-              <img mat-card-image class="card__image" [src]="apiUrl + '/uploads/' + album.image"
-                   alt="Photo of {{ album.name }}">
+              <img mat-card-image class="card__image" [src]="apiUrl + '/uploads/' + album.image" alt="Photo of {{ album.name }}">
+              <span class="material-icons card__unpublished-icon" *ngIf="!(album.isPublished)">unpublished</span>
             </div>
             <mat-card-title class="card__title"><span class="material-icons">album</span> {{ album.name }}
             </mat-card-title>

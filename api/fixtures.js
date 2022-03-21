@@ -29,7 +29,7 @@ const run = async () => {
     role: 'user'
   });
 
-  const [Eminem, Linkin] = await Artists.create({
+  const [Eminem, Linkin, Disturbed, Snoop_Dogg] = await Artists.create({
     name: 'Eminem',
     information: 'Public artist',
     image: 'Eminem.jpg',
@@ -37,42 +37,80 @@ const run = async () => {
   }, {
     name: 'Linkin-park',
     information: 'Public artist',
-    image: 'linkin-park.jpg',
+    image: 'linkin_park.jpg',
+    isPublished: true
+  }, {
+    name: 'Disturbed',
+    information: 'Public artist',
+    image: 'disturbed.jpg',
     isPublished: false
+  }, {
+    name: 'Snoop_Dogg',
+    information: 'Public artist',
+    image: 'snoop.jpeg',
+    isPublished: true
   });
 
 
-  const [Meteora, Kamikaze] = await Albums.create({
+  const [Indestructible, Meteora, Kamikaze, Asylum, Reincarnated, One_More_Light] = await Albums.create({
+    name: 'Indestructible',
+    author: Disturbed,
+    year: '2009',
+    description: 'Some album Disturbed',
+    image: 'Indestructible.jpg',
+    isPublished: true
+  }, {
     name: 'Meteora',
     author: Linkin,
-    year: '2003',
+    year: '2001',
     description: 'Some album Linkin-park',
     image: 'Meteora.jpg',
-    isPublished: false
+    isPublished: true
   }, {
-    name: 'Kamikaze',
+    name: 'Normal',
     author: Eminem,
     year: '2001',
     description: 'Some album Eminem',
     image: 'Kamikaze.jpg',
     isPublished: false
+  },{
+    name: 'Asylum',
+    author: Disturbed,
+    year: '2010',
+    description: 'Some album Disturbed',
+    image: 'Asylum.jpg',
+    isPublished: false
+  }, {
+    name: 'Reincarnated',
+    author: Snoop_Dogg,
+    year: '2013',
+    description: 'Some album Snoop_Dogg',
+    image: 'Reincarnated.jpg',
+    isPublished: true
+  }, {
+    name: 'One More Light',
+    author: Linkin,
+    year: '2017',
+    description: 'Some album Linkin-park',
+    image: 'link.jpg',
+    isPublished: true
   },);
 
-  const [track1, track2, track3, track4, track5, track6, track7, track8, track9, track10] = await Track.create({
+  await Track.create({
     name: 'Don`t Stay',
     album: Meteora,
     duration: '3:08',
-    isPublished: false
+    isPublished: true
   }, {
     name: 'Hit the Floor',
     album: Meteora,
     duration: '3:23',
-    isPublished: false
+    isPublished: true
   }, {
     name: 'Easier to Run',
     album: Meteora,
     duration: '3:24',
-    isPublished: false
+    isPublished: true
   }, {
     name: 'Nobody`s Listening',
     album: Meteora,
@@ -87,17 +125,17 @@ const run = async () => {
     name: 'The Ringer',
     album: Kamikaze,
     duration: '5:37',
-    isPublished: false
+    isPublished: true
   }, {
     name: 'Greatest',
     album: Kamikaze,
     duration: '3:46',
-    isPublished: false
+    isPublished: true
   }, {
     name: 'Lucky You',
     album: Kamikaze,
     duration: '4:04',
-    isPublished: false
+    isPublished: true
   }, {
     name: 'Normal',
     album: Kamikaze,
@@ -107,6 +145,106 @@ const run = async () => {
     name: 'Stepping Stone',
     album: Kamikaze,
     duration: '5:09',
+    isPublished: false
+  }, {
+    name: 'Indestructible',
+    album: Indestructible,
+    duration: '4:38',
+    isPublished: true
+  }, {
+    name: 'Inside the Fire',
+    album: Indestructible,
+    duration: '3:52',
+    isPublished: true
+  }, {
+    name: 'Tom',
+    album: Indestructible,
+    duration: '4:09',
+    isPublished: true
+  }, {
+    name: 'Deceiver',
+    album: Indestructible,
+    duration: '3:49',
+    isPublished: false
+  }, {
+    name: 'Criminal',
+    album: Indestructible,
+    duration: '4:16',
+    isPublished: false
+  },  {
+    name: 'Asylum',
+    album: Asylum,
+    duration: '4:38',
+    isPublished: true
+  }, {
+    name: 'Warrior',
+    album: Asylum,
+    duration: '3:25',
+    isPublished: true
+  }, {
+    name: 'Serpentine',
+    album: Asylum,
+    duration: '4:09',
+    isPublished: true
+  }, {
+    name: 'My Child',
+    album: Asylum,
+    duration: '3:19',
+    isPublished: false
+  }, {
+    name: 'Animal',
+    album: Asylum,
+    duration: '4:16',
+    isPublished: false
+  },  {
+    name: 'Get Away',
+    album: Reincarnated,
+    duration: '4:38',
+    isPublished: true
+  }, {
+    name: 'Smoke the Weed',
+    album: Reincarnated,
+    duration: '3:25',
+    isPublished: true
+  }, {
+    name: 'Torn Apart',
+    album: Reincarnated,
+    duration: '4:09',
+    isPublished: true
+  }, {
+    name: 'The Good Good',
+    album: Reincarnated,
+    duration: '3:19',
+    isPublished: false
+  }, {
+    name: 'So Long',
+    album: Reincarnated,
+    duration: '4:16',
+    isPublished: false
+  },  {
+    name: 'Invisible',
+    album: One_More_Light,
+    duration: '4:38',
+    isPublished: true
+  }, {
+    name: 'Halfway Right',
+    album: One_More_Light,
+    duration: '3:25',
+    isPublished: true
+  }, {
+    name: 'One More Light',
+    album: One_More_Light,
+    duration: '4:09',
+    isPublished: true
+  }, {
+    name: 'Sorry for Now',
+    album: One_More_Light,
+    duration: '3:19',
+    isPublished: false
+  }, {
+    name: 'Good Goodbye',
+    album: One_More_Light,
+    duration: '4:16',
     isPublished: false
   },);
 
