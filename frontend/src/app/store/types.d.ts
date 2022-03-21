@@ -16,7 +16,9 @@ export type ArtistsState = {
 export type AlbumsState = {
   albums: AlbumModel[],
   fetchLoading: boolean,
-  fetchError: null | string
+  fetchError: null | string,
+  createLoading: boolean,
+  createError: null | string,
 };
 
 

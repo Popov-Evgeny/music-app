@@ -36,7 +36,7 @@ export class MusicService {
   }
 
   getArtistsAlbums(id: string) {
-    return this.http.get<ApiAlbumData[]>(environment.apiUrl + '/albums/withArtist/' + id).pipe(map(response => {
+    return this.http.get<AlbumModel[]>(environment.apiUrl + '/albums/withArtist/' + id).pipe(map(response => {
       return response.map( albumData => {
         return new AlbumModel(
           albumData._id,
@@ -46,5 +46,17 @@ export class MusicService {
           albumData.image
         )});
     }))
+  }
+
+
+  createAlbum(data: ApiAlbumData) {
+    const formData = new FormData();
+
+    Object.keys(data).forEach(key => {
+      if (data[key] !== null) {
+        formData.append(key, data[key]);
+      }
+    });
+    return this.http.post(environment.apiUrl + '/albums', formData);
   }
 }

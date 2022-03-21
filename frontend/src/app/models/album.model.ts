@@ -9,7 +9,7 @@ export class AlbumModel {
 }
 
 export interface ApiAlbumData {
-  _id: string,
+  [key: string]: any,
   name: string,
   author: {_id: string, name: string, information: string },
   year: string,

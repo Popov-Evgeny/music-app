@@ -39,7 +39,7 @@ router.get('/withArtist/:id', async (req , res) => {
   res.send(albumWithArtist);
 });
 
-router.post('/', auth, permit('admin'),  upload.single('image'), async (req , res, next) => {
+router.post('/', auth, permit('admin', 'user'),  upload.single('image'), async (req , res, next) => {
   try {
     if (!req.body.name) {
       return res.status(500).send({massage: 'Check if the input is correct'});
