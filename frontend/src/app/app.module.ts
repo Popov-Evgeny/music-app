@@ -51,6 +51,7 @@ import { CreateNewAlbumComponent } from './pages/create-new-album/create-new-alb
 import { CreateNewTrackComponent } from './pages/create-new-track/create-new-track.component';
 import { MatSelectModule } from '@angular/material/select';
 import { HomeComponent } from './pages/home/home.component';
+import { UserTypeDirective } from './directives/user-type.directive';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -78,7 +79,8 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     CreateNewArtistComponent,
     CreateNewAlbumComponent,
     CreateNewTrackComponent,
-    HomeComponent
+    HomeComponent,
+    UserTypeDirective
   ],
     imports: [
         BrowserModule,

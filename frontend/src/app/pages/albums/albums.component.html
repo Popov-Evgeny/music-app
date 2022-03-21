@@ -21,6 +21,11 @@
             <mat-card-title class="card__title"><span class="material-icons">album</span> {{ album.name }}
             </mat-card-title>
             <mat-card-subtitle class="card__subtitle">{{ album.year }} г.</mat-card-subtitle>
+            <mat-divider inset></mat-divider>
+            <mat-card-actions class="card__buttons-block">
+              <button mat-raised-button color="accent">Publish</button>
+              <button mat-raised-button color="warn">Delete</button>
+            </mat-card-actions>
           </mat-card>
         </a>
       </div>
