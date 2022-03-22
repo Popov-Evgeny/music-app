@@ -35,10 +35,15 @@ router.post('/', auth, permit('admin', 'user'), upload.single('image'), async (r
       name: req.body.name,
       information: req.body.information,
       image: null,
+      isPublished: false
     }
 
     if (req.file) {
       artistData.image = req.file.filename;
+    }
+
+    if (req.user.role === 'admin') {
+      artistData.isPublished = true;
     }
 
     const artist = new Artist(artistData);

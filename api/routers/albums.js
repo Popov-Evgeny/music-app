@@ -50,10 +50,15 @@ router.post('/', auth, permit('admin', 'user'),  upload.single('image'), async (
       author: req.body.author,
       year: req.body.year,
       image: null,
+      isPublished: false
     }
 
     if (req.file) {
       albumData.image = req.file.filename;
+    }
+
+    if (req.user.role === 'admin') {
+      albumData.isPublished = true;
     }
 
     const album = new Albums(albumData);

@@ -19,7 +19,7 @@
         <button mat-icon-button class="sidenav-btn" (click)="drawer.toggle(); onChange()">
           <span class="material-icons">{{isOpen ? 'queue_music' : 'close'}}</span>
         </button>
-        <a class="logo" routerLink="/">Music.FM <span class="material-icons">headset</span></a>
+        <a class="logo" routerLink="/">Music <span class="material-icons">headset</span></a>
       </div>
       <nav *appUserType="'user' else anonMenu">
         <button mat-icon-button [matMenuTriggerFor]="menu">

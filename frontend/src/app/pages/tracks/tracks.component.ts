@@ -27,8 +27,8 @@ export class TracksComponent implements OnInit, OnDestroy {
     private store: Store<AppState>,
   ) {
     this.tracks = this.store.select(state => state.tracks.tracks);
-    this.loading = this.store.select( state => state.albums.fetchLoading);
-    this.error = this.store.select( state => state.albums.fetchError);
+    this.loading = this.store.select( state => state.tracks.fetchLoading);
+    this.error = this.store.select( state => state.tracks.fetchError);
     this.user = store.select(state => state.users.user);
   }
 

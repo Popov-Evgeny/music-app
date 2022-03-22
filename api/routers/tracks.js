@@ -69,6 +69,11 @@ router.post('/', auth, permit('admin', 'user'),  async (req, res, next) => {
       name: req.body.name,
       album: req.body.album,
       duration: req.body.duration,
+      isPublished: false
+    }
+
+    if (req.user.role === 'admin') {
+      trackData.isPublished = true;
     }
 
     const track = new Track(trackData);

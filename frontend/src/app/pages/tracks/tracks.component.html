@@ -1,23 +1,33 @@
 <div>
   <h2 class="artist-title">Album: {{ albumName }}</h2>
 </div>
-<div *ngFor="let track of tracks | async">
-  <mat-card class="card-track">
-    <div class="card-track__track-icons">
-      <span class="material-icons card-track__icon-play" (click)="addToHistory(track._id)">play_circle</span>
-    </div>
-    <div class="card-track__items">
-      <mat-card-title class="card-track__title">{{ track.name }}</mat-card-title>
-      <span class="material-icons card__unpublished-icon" *ngIf="!(track.isPublished)">unpublished</span>
-      <div class="card-track__slider-block">
-        <mat-slider aria-label="unit(s)" class="card-track__slider"></mat-slider>
-        <mat-card-subtitle class="card-track__subtitle">{{ track.duration }}</mat-card-subtitle>
-      </div>
-    </div>
-    <mat-divider inset></mat-divider>
-    <mat-card-actions class="card__buttons-block" *appHasRoles="['admin']">
-      <button mat-raised-button color="accent" (click)="onPublish(track._id)">Publish</button>
-      <button mat-raised-button color="warn" (click)="onRemove(track._id, $event)">Delete</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="lds-facebook" *ngIf="(loading | async) else trackArea">
+  <div></div>
+  <div></div>
+  <div></div>
 </div>
+
+<ng-template #trackArea>
+  <div *ngFor="let track of tracks | async">
+    <mat-card class="card-track" *appHasRoles="{role: ['user', 'admin'], published: track.isPublished}">
+      <div class="card-track__track-icons">
+        <span class="material-icons card-track__icon-play" (click)="addToHistory(track._id)">play_circle</span>
+      </div>
+      <div class="card-track__items">
+        <mat-card-title class="card-track__title">{{ track.name }}</mat-card-title>
+        <span class="material-icons card__unpublished-icon" *ngIf="!(track.isPublished)">unpublished</span>
+        <div class="card-track__slider-block">
+          <mat-slider aria-label="unit(s)" class="card-track__slider"></mat-slider>
+          <mat-card-subtitle class="card-track__subtitle">{{ track.duration }}</mat-card-subtitle>
+        </div>
+      </div>
+      <mat-divider inset></mat-divider>
+      <mat-card-actions class="card__buttons-block" *appOpenedRoles="['admin']">
+        <button mat-raised-button color="accent" (click)="onPublish(track._id)">Publish</button>
+        <button mat-raised-button color="warn" (click)="onRemove(track._id, $event)">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</ng-template>
+
+

@@ -76,8 +76,9 @@ mat-icon
   text-decoration: none
 
   &__card-item
+    width: 330px
     border: 2px solid silver
-    margin: 7px
+    margin: 15px
     border-radius: 15px 0 15px 0 !important
     background: #1c1c1c
 
@@ -99,11 +100,14 @@ mat-icon
     position: absolute
     content: ''
     top: 5px
-    right: 10px
-    width: 40px
-    height: 40px
+    right: 5px
+    width: 43px
+    height: 45px
     font-size: 40px
-    color: #e98811
+    color: white
+    background: #e98811
+    border: 2px solid white
+    border-radius: 5px
 
   &__title
     font-weight: 700
@@ -319,3 +323,40 @@ mat-icon
     width: 250px!important
     height: 255px
     margin: 0 auto 20px!important
+
+
+.lds-facebook
+  display: flex
+  position: relative
+  width: 80px
+  height: 80px
+  margin: 0 auto
+
+.lds-facebook div
+  display: inline-block
+  position: absolute
+  left: 8px
+  width: 16px
+  background: #e98811
+  animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite
+
+.lds-facebook div:nth-child(1)
+  left: 8px
+  animation-delay: -0.24s
+
+.lds-facebook div:nth-child(2)
+  left: 32px
+  animation-delay: -0.12s
+
+.lds-facebook div:nth-child(3)
+  left: 56px
+  animation-delay: 0s
+
+@keyframes lds-facebook
+  0%
+    top: 8px
+    height: 64px
+
+  50%, 100%
+    top: 24px
+    height: 32px

@@ -1,24 +1,23 @@
 <div>
   <h2 class="artist-title">All artists</h2>
-  <mat-progress-spinner class="spinner" mode="indeterminate"
-                        *ngIf=" (loading | async) else artistArea"></mat-progress-spinner>
+  <div class="lds-facebook" *ngIf="(loading | async) else artistArea">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
   <ng-template #artistArea>
     <div fxLayout="row wrap">
-      <div fxFlex.xs="100%"
-           fxFlex.sm="50%"
-           fxFlex.lt-lg="33%"
-           fxFlex="25%"
-           *ngFor="let artist of artists | async">
-        <mat-card class="card__card-item" (click)="onLink(artist._id, artist.name)">
+      <div *ngFor="let artist of artists | async">
+        <mat-card class="card__card-item" *appHasRoles="{role: ['user', 'admin'], published: artist.isPublished}" (click)="onLink(artist._id, artist.name)">
           <div class="card__image-block">
             <img mat-card-image class="card__image" [src]="apiUrl + '/uploads/' + artist.image"
                  alt="Photo of {{ artist.name }}">
             <span class="material-icons card__unpublished-icon" *ngIf="!(artist.isPublished)">unpublished</span>
           </div>
           <mat-card-title class="card__title">{{ artist.name }}</mat-card-title>
-          <div *appHasRoles="['admin']">
+          <div>
             <mat-divider inset></mat-divider>
-            <mat-card-actions class="card__buttons-block">
+            <mat-card-actions class="card__buttons-block" *appOpenedRoles="['admin']">
               <button mat-raised-button color="accent" (click)="onPublish(artist._id, $event)">Publish</button>
               <button mat-raised-button color="warn" (click)="onRemove(artist._id, $event)">Delete</button>
             </mat-card-actions>

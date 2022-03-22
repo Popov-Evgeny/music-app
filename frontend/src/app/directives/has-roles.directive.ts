@@ -8,28 +8,33 @@ import { AppState } from '../store/types';
   selector: '[appHasRoles]'
 })
 export class HasRolesDirective implements OnInit, OnDestroy {
-  @Input("appHasRoles") roles!: string[];
-  user: Observable<null | User>;
+  user: Observable<User | null>;
   userSub!: Subscription;
+
+  @Input('appHasRoles') roles!: {
+    role: string[],
+    published?: boolean,
+  };
 
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
-    private store: Store<AppState>,
+    private store: Store<AppState>
   ) {
     this.user = store.select(state => state.users.user);
   }
 
   ngOnInit() {
     this.userSub = this.user.subscribe(user => {
-      if (user && this.roles.includes(user.role)) {
-        this.viewContainer.createEmbeddedView(this.templateRef);
-      } else {
-        this.viewContainer.clear();
-      }
-    });
-  }
+      this.viewContainer.clear();
 
+      if(user?.role === 'admin'){
+        this.viewContainer.createEmbeddedView(this.templateRef);
+      } else if((user?.role === 'user' && this.roles.published === true) || (!user && this.roles.published === true)){
+        this.viewContainer.createEmbeddedView(this.templateRef);
+      }
+    })
+  }
 
   ngOnDestroy() {
     this.userSub.unsubscribe();
