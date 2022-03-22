@@ -21,6 +21,7 @@ export class TracksComponent implements OnInit, OnDestroy {
   user: Observable<null | User>
   userSubscription!: Subscription;
   userData!: User;
+  id!: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +36,7 @@ export class TracksComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.albumName = params['name'];
+      this.id = params['id'];
       this.store.dispatch(fetchTracksRequest({id: params['id']}));
     });
     this.userSubscription = this.user.subscribe( user => {
@@ -54,6 +56,7 @@ export class TracksComponent implements OnInit, OnDestroy {
       isPublished: true
     }
     this.store.dispatch(updateTrackRequest({data}));
+    this.store.dispatch(fetchTracksRequest({id: this.id}));
   }
 
   ngOnDestroy() {

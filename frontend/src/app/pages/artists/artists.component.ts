@@ -40,6 +40,7 @@ export class ArtistsComponent implements OnInit {
       isPublished: true
     }
     this.store.dispatch(updateArtistRequest({data}))
+    this.store.dispatch(fetchArtistRequest());
   }
 
   onRemove(id: string, event: Event) {

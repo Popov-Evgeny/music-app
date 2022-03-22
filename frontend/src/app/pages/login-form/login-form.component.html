@@ -1,52 +1,54 @@
-<mat-card class="form-block">
-  <mat-card-title class="form-block__form-title">Login</mat-card-title>
-  <mat-card-content class="form-wrapper">
-    <form
-      #form="ngForm"
-      autocomplete="off"
-      (ngSubmit)="onSubmit()"
-      class="form"
-    >
-      <div *ngIf="error | async" class="error">
-        {{ (error | async)?.error }}
-      </div>
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input
-          type="email" name="email" autocomplete="username"
-          email required matInput ngModel #email="ngModel"
-        />
-      </mat-form-field>
-      <mat-error class="mat-error" *ngIf="email.touched && email.hasError('required')">
-        Email is required!
-      </mat-error>
-      <mat-error class="mat-error" *ngIf="email.touched && email.hasError('email')">
-        Enter a correct email!
-      </mat-error>
+<div class="form-wrapper">
+  <mat-card class="form-block">
+    <mat-card-title class="form-block__form-title">Login</mat-card-title>
+    <mat-card-content class="form-wrapper">
+      <form
+        #form="ngForm"
+        autocomplete="off"
+        (ngSubmit)="onSubmit()"
+        class="form"
+      >
+        <div *ngIf="error | async" class="error">
+          {{ (error | async)?.error }}
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            type="email" name="email" autocomplete="username"
+            email required matInput ngModel #email="ngModel"
+          />
+        </mat-form-field>
+        <mat-error class="mat-error" *ngIf="email.touched && email.hasError('required')">
+          Email is required!
+        </mat-error>
+        <mat-error class="mat-error" *ngIf="email.touched && email.hasError('email')">
+          Enter a correct email!
+        </mat-error>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input
-          type="password" name="password" autocomplete="current-password"
-          required matInput ngModel #password="ngModel"
-        />
-      </mat-form-field>
-      <mat-error class="mat-error" *ngIf="password.touched && password.hasError('required')">
-        The password is required!
-      </mat-error>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            type="password" name="password" autocomplete="current-password"
+            required matInput ngModel #password="ngModel"
+          />
+        </mat-form-field>
+        <mat-error class="mat-error" *ngIf="password.touched && password.hasError('required')">
+          The password is required!
+        </mat-error>
 
-      <a routerLink="/register" class="register-link">Don't have an account? Sign Up</a>
+        <a routerLink="/register" class="register-link">Don't have an account? Sign Up</a>
 
-      <div>
-        <button
-          type="submit"
-          mat-button
-          class="btn-login"
-          [disabled]="form.invalid"
-        >
-          SIGN IN
-        </button>
-      </div>
-    </form>
-  </mat-card-content>
-</mat-card>
+        <div>
+          <button
+            type="submit"
+            mat-button
+            class="btn-login"
+            [disabled]="form.invalid"
+          >
+            SIGN IN
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

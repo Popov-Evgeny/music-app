@@ -32,7 +32,9 @@ export class OpenedRolesDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.userSub.unsubscribe();
+    if (this.userSub) {
+      this.userSub.unsubscribe();
+    }
   }
 
 

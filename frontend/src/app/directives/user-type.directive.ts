@@ -36,6 +36,8 @@ export class UserTypeDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    if (this.userSub) {
       this.userSub.unsubscribe();
+    }
   }
 }
