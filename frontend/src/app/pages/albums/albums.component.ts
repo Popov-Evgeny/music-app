@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { MusicService } from '../../services/music.service';
 import { AlbumModel } from '../../models/album.model';
 import { environment } from '../../../environments/environment';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
-import { fetchAlbumRequest } from '../../store/album.actions';
+import { fetchAlbumRequest, updateAlbumRequest } from '../../store/album.actions';
+import { Publish } from '../../models/user.model';
 
 @Component({
   selector: 'app-albums',
@@ -21,10 +22,28 @@ export class AlbumsComponent implements OnInit {
   artistName!: string;
   artistInfo!: string;
 
-  constructor(private musicService: MusicService, private route: ActivatedRoute, private store: Store<AppState>) {
+  constructor(
+    private musicService: MusicService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private store: Store<AppState>
+  ) {
     this.albums = this.store.select(state => state.albums.albums);
     this.loading = this.store.select( state => state.albums.fetchLoading);
     this.error = this.store.select( state => state.albums.fetchError);
+  }
+
+  onLink(id: string, authorName: string, albumName: string) {
+    void this.router.navigate(['/', id, authorName, albumName, 'tracks'])
+  }
+
+  onPublish(id: string, event: Event) {
+    event.stopPropagation();
+    const data: Publish = {
+      id: id,
+      isPublished: true
+    }
+    this.store.dispatch(updateAlbumRequest({data}))
   }
 
   ngOnInit(): void {

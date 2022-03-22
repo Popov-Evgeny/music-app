@@ -10,8 +10,7 @@
            fxFlex.lt-lg="33%"
            fxFlex="25%"
            *ngFor="let album of albums | async">
-        <a class="card" [routerLink]="['/', album._id, album.author.name, album.name, 'tracks']">
-          <mat-card class="card card__card-item">
+          <mat-card class="card card__card-item" (click)="onLink( album._id, album.author.name, album.name)">
             <div class="card__image-block">
               <img mat-card-image class="card__image" [src]="apiUrl + '/uploads/' + album.image" alt="Photo of {{ album.name }}">
               <span class="material-icons card__unpublished-icon" *ngIf="!(album.isPublished)">unpublished</span>
@@ -19,13 +18,12 @@
             <mat-card-title class="card__title"><span class="material-icons">album</span> {{ album.name }}
             </mat-card-title>
             <mat-card-subtitle class="card__subtitle">{{ album.year }} г.</mat-card-subtitle>
+            <mat-divider inset></mat-divider>
             <mat-card-actions class="card__buttons-block">
-              <mat-divider inset></mat-divider>
-              <button mat-raised-button color="accent">Publish</button>
+              <button mat-raised-button color="accent" (click)="onPublish(album._id, $event)">Publish</button>
               <button mat-raised-button color="warn">Delete</button>
             </mat-card-actions>
           </mat-card>
-        </a>
       </div>
     </div>
   </ng-template>

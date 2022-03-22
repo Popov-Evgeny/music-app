@@ -4,6 +4,7 @@ import { environment, environment as env } from '../../environments/environment'
 import { map } from 'rxjs/operators';
 import { ApiTracksData, TracksModel } from '../models/tracks.model';
 import { ApiArtistsData } from '../models/artist.model';
+import { Publish } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,9 @@ export class TracksService {
 
   createTrack(data: ApiTracksData) {
     return this.http.post(environment.apiUrl + '/tracks', data);
+  }
+
+  publishTrack(data: Publish) {
+    return this.http.post(environment.apiUrl +  '/tracks' + data.id + '/publish', data.isPublished);
   }
 }

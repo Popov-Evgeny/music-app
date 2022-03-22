@@ -7,10 +7,11 @@ import {
   createTrackSuccess,
   fetchTracksFailure,
   fetchTracksRequest,
-  fetchTracksSuccess
+  fetchTracksSuccess, updateTrackRequest, updateTrackSuccess
 } from './tracks.actions';
 import { TracksService } from '../services/tracks.service';
 import { Router } from '@angular/router';
+
 
 
 @Injectable()
@@ -37,6 +38,13 @@ export class TracksEffects {
       map(() => createTrackSuccess()),
       tap(() => this.router.navigate(['/'])),
       catchError(() => of(createTrackFailure({error: 'Wrong data'})))
+    ))
+  ));
+
+  updateArtist = createEffect(() => this.actions.pipe(
+    ofType(updateTrackRequest),
+    mergeMap(({data}) => this.tracksService.publishTrack(data).pipe(
+      map(() => updateTrackSuccess())
     ))
   ));
 }

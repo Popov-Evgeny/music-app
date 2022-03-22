@@ -34,3 +34,8 @@ export interface LoginUserData {
 export interface LoginError {
   error: string,
 }
+
+export interface Publish {
+  id: string,
+  isPublished: boolean
+}

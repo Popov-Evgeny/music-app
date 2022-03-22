@@ -14,8 +14,8 @@
         <mat-card-subtitle class="card-track__subtitle">{{ track.duration }}</mat-card-subtitle>
       </div>
     </div>
+    <mat-divider inset></mat-divider>
     <mat-card-actions class="card__buttons-block" *ngIf="(user | async)?.role === 'admin'">
-      <mat-divider inset></mat-divider>
       <button mat-raised-button color="accent">Publish</button>
       <button mat-raised-button color="warn">Delete</button>
     </mat-card-actions>

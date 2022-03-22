@@ -1,37 +1,45 @@
-<mat-card class="form-block">
-  <mat-card-title class="form-block__form-title">Create new album</mat-card-title>
-  <mat-card-content class="form-wrapper">
-    <form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit()" class="reg-form">
-      <mat-form-field appearance="outline" class="reg-form__element-wrapper">
-        <mat-label class="reg-form__label">Album title</mat-label>
-        <input type="text" name="name" class="reg-form__element" required matInput ngModel #name="ngModel"/>
-        <mat-error class="reg-form__element-error" *ngIf="name.touched && name.hasError('required')">Name is required!</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="reg-form__element-wrapper">
-        <mat-label>Choose an author</mat-label>
-        <mat-select required name="author" ngModel #author="ngModel">
-          <mat-option [value]="artist._id" *ngFor="let artist of artists | async">{{ artist.name }}</mat-option>
-        </mat-select>
-        <mat-error class="reg-form__element-error" *ngIf="author.touched && author.hasError('required')">Author is required!</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="reg-form__element-wrapper">
-        <mat-label class="reg-form__label">Year</mat-label>
-        <input type="text" name="year" class="reg-form__element" required matInput ngModel #year="ngModel"/>
-        <mat-error class="reg-form__element-error" *ngIf="year.touched && year.hasError('required')">Year is required!</mat-error>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Album's cover</mat-label>
-        <app-file-input name="image" required ngModel></app-file-input>
-      </mat-form-field>
-      <div>
-        <button
-          type="submit"
-          mat-button
-          class="reg-form__reg-btn"
-          [disabled]="form.invalid"
-        >Create
-        </button>
-      </div>
-    </form>
-  </mat-card-content>
-</mat-card>
+<div class="form-wrapper">
+  <mat-card class="form-block">
+    <mat-card-title class="form-block__form-title">Create new album</mat-card-title>
+    <mat-card-content class="form-wrapper">
+      <form #form="ngForm" autocomplete="off" (ngSubmit)="onSubmit()" class="reg-form">
+        <mat-form-field appearance="outline" class="reg-form__element-wrapper">
+          <mat-label class="reg-form__label">Album title</mat-label>
+          <input type="text" name="name" class="reg-form__element" required matInput ngModel #name="ngModel"/>
+          <mat-error class="reg-form__element-error" *ngIf="name.touched && name.hasError('required')">Name is
+            required!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="reg-form__element-wrapper">
+          <mat-label>Choose an author</mat-label>
+          <mat-select required name="author" ngModel #author="ngModel">
+            <mat-option [value]="artist._id" *ngFor="let artist of artists | async">{{ artist.name }}</mat-option>
+          </mat-select>
+          <mat-error class="reg-form__element-error" *ngIf="author.touched && author.hasError('required')">Author is
+            required!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="reg-form__element-wrapper">
+          <mat-label class="reg-form__label">Year</mat-label>
+          <input type="text" name="year" class="reg-form__element" required matInput ngModel #year="ngModel"/>
+          <mat-error class="reg-form__element-error" *ngIf="year.touched && year.hasError('required')">Year is
+            required!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Album's cover</mat-label>
+          <app-file-input name="image" required ngModel></app-file-input>
+        </mat-form-field>
+        <div>
+          <button
+            type="submit"
+            mat-button
+            class="reg-form__reg-btn"
+            [disabled]="form.invalid"
+          >Create
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

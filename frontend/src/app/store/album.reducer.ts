@@ -6,7 +6,7 @@ import {
   createAlbumSuccess,
   fetchAlbumFailure,
   fetchAlbumRequest,
-  fetchAlbumSuccess
+  fetchAlbumSuccess, updateAlbumRequest, updateAlbumSuccess
 } from './album.actions';
 
 
@@ -15,7 +15,8 @@ const initialState: AlbumsState = {
   fetchLoading: false,
   fetchError: null,
   createLoading: false,
-  createError: null
+  createError: null,
+  updateLoading: false,
 }
 
 export const albumsReducer = createReducer(
@@ -26,5 +27,8 @@ export const albumsReducer = createReducer(
 
   on(createAlbumRequest, state => ({...state, createLoading: true})),
   on(createAlbumSuccess, state => ({...state, createLoading: false})),
-  on(createAlbumFailure, (state, {error}) => ({...state, createLoading: false, createError: error,}))
+  on(createAlbumFailure, (state, {error}) => ({...state, createLoading: false, createError: error,})),
+
+  on(updateAlbumRequest, state =>({...state, updateLoading: true})),
+  on(updateAlbumSuccess, state => ({...state, updateLoading: false})),
 )

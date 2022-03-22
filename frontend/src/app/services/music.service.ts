@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { ApiArtistsData, ArtistModel } from '../models/artist.model';
 import { map } from 'rxjs/operators';
 import { AlbumModel, ApiAlbumData } from '../models/album.model';
+import { Publish } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +51,6 @@ export class MusicService {
     }))
   }
 
-
   createAlbum(data: ApiAlbumData) {
     const formData = new FormData();
 
@@ -60,5 +60,13 @@ export class MusicService {
       }
     });
     return this.http.post(environment.apiUrl + '/albums', formData);
+  }
+
+  publishAlbum(data: Publish) {
+    return this.http.post(environment.apiUrl +  '/albums/' + data.id + '/publish', data);
+  }
+
+  publishArtist(data: Publish) {
+    return this.http.post(environment.apiUrl +  '/artists' + data.id + '/publish', data.isPublished);
   }
 }

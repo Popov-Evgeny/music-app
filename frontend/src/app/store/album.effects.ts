@@ -8,7 +8,7 @@ import {
   createAlbumSuccess,
   fetchAlbumFailure,
   fetchAlbumRequest,
-  fetchAlbumSuccess
+  fetchAlbumSuccess, updateAlbumRequest, updateAlbumSuccess
 } from './album.actions';
 import { Router } from '@angular/router';
 
@@ -36,6 +36,13 @@ export class AlbumsEffects {
       map(() => createAlbumSuccess()),
       tap(() => this.router.navigate(['/'])),
       catchError(() => of(createAlbumFailure({error: 'Wrong data'})))
+    ))
+  ));
+
+  updateAlbum = createEffect(() => this.actions.pipe(
+    ofType(updateAlbumRequest),
+    mergeMap(({data}) => this.musicService.publishAlbum(data).pipe(
+      map(() => updateAlbumSuccess())
     ))
   ));
 }

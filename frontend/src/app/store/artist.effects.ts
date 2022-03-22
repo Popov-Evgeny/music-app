@@ -7,7 +7,7 @@ import {
   createArtistSuccess,
   fetchArtistFailure,
   fetchArtistRequest,
-  fetchArtistSuccess
+  fetchArtistSuccess, updateArtistRequest, updateArtistSuccess
 } from './artist.actions';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
@@ -36,6 +36,13 @@ export class ArtistEffects {
       map(() => createArtistSuccess()),
       tap(() => this.router.navigate(['/'])),
       catchError(() => of(createArtistFailure({error: 'Wrong data'})))
+    ))
+  ));
+
+  updateArtist = createEffect(() => this.actions.pipe(
+    ofType(updateArtistRequest),
+    mergeMap(({data}) => this.musicService.publishArtist(data).pipe(
+      map(() => updateArtistSuccess())
     ))
   ));
 }
