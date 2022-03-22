@@ -16,18 +16,18 @@
   </div>
   <div class="list-block">
     <ul class="list-main">
-      <li class="list-main__list-item">Lorem ipsum dolor sit amet.</li>
-      <li class="list-main__list-item">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, sunt.</li>
-      <li class="list-main__list-item">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, sunt.</li>
-      <li class="list-main__list-item">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, sunt.</li>
-      <li class="list-main__list-item">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, sunt.</li>
+      <li class="list-main__list-item"><span class="list-main__list-number"># 01. </span>Snoop Dogg - Smoke the Weed</li>
+      <li class="list-main__list-item"><span class="list-main__list-number"># 02. Linkin-Park - Numb</span></li>
+      <li class="list-main__list-item"><span class="list-main__list-number"># 03. </span>Eminem - Stepping Stone</li>
+      <li class="list-main__list-item"><span class="list-main__list-number"># 02. </span>Linkin-Park - One More Light</li>
+      <li class="list-main__list-item"><span class="list-main__list-number"># 05. </span>Disturbed - Indestructible</li>
     </ul>
   </div>
 </section>
 <section class="favorite-block">
   <h3 class="favorite-block__title">Your favorite authors and bands</h3>
   <div class="artists-block">
-    <div fxLayout="row wrap" fxLayoutAlign="center">
+    <div fxLayout="row wrap" fxLayoutAlign="space-around">
       <div fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.lt-lg="33%" fxFlex="20%" *ngFor="let artist of arrArtists">
         <a class="card" [routerLink]="[artist._id, artist.name, 'albums']">
           <mat-card class="card__card-item">

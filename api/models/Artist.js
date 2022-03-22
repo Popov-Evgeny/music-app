@@ -11,7 +11,8 @@ const ArtistSchema = new Schema({
   image: String,
   isPublished: {
     type: Boolean,
-    required: true
+    required: true,
+    default: false,
   }
 });
 

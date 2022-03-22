@@ -35,7 +35,6 @@ router.post('/', auth, permit('admin', 'user'), upload.single('image'), async (r
       name: req.body.name,
       information: req.body.information,
       image: null,
-      isPublished: false
     }
 
     if (req.file) {
@@ -46,6 +45,26 @@ router.post('/', auth, permit('admin', 'user'), upload.single('image'), async (r
     await artist.save();
 
     return res.send({message: 'Added new artist in database'});
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.post('/:id/publish', auth, permit('admin'), async (req , res, next) => {
+  try {
+    await Artist.updateOne({_id: req.params.id}, {isPublished: req.body.isPublished})
+
+    return res.send({message: 'Artist published!'});
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.delete('/:id', auth, permit('admin'), async (req , res, next) => {
+  try {
+    await Artist.deleteOne({_id: req.params.id});
+
+    return res.send({message: 'Artist delete!!'});
   } catch (e) {
     next(e);
   }

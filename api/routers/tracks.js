@@ -69,7 +69,6 @@ router.post('/', auth, permit('admin', 'user'),  async (req, res, next) => {
       name: req.body.name,
       album: req.body.album,
       duration: req.body.duration,
-      isPublished: false
     }
 
     const track = new Track(trackData);
@@ -82,6 +81,26 @@ router.post('/', auth, permit('admin', 'user'),  async (req, res, next) => {
       return res.status(400).send(e);
     }
     return next(e);
+  }
+});
+
+router.post('/:id/publish', auth, permit('admin'), async (req , res, next) => {
+  try {
+    await Track.updateOne({_id: req.params.id}, {isPublished: req.body.isPublished})
+
+    return res.send({message: 'Track published!'});
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.delete('/:id', auth, permit('admin'), async (req , res, next) => {
+  try {
+    await Track.deleteOne({_id: req.params.id});
+
+    return res.send({message: 'Track delete!!'});
+  } catch (e) {
+    next(e);
   }
 });
 

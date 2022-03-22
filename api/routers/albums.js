@@ -50,7 +50,6 @@ router.post('/', auth, permit('admin', 'user'),  upload.single('image'), async (
       author: req.body.author,
       year: req.body.year,
       image: null,
-      isPublished: false
     }
 
     if (req.file) {
@@ -62,6 +61,26 @@ router.post('/', auth, permit('admin', 'user'),  upload.single('image'), async (
     await album.save();
 
     return res.send({message: 'Added new album in database'});
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.post('/:id/publish', auth, permit('admin'), async (req , res, next) => {
+  try {
+    await Albums.updateOne({_id: req.params.id}, {isPublished: req.body.isPublished})
+
+    return res.send({message: 'Album published!'});
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.delete('/:id', auth, permit('admin'), async (req , res, next) => {
+  try {
+    await Albums.deleteOne({_id: req.params.id});
+
+    return res.send({message: 'Albums delete!!'});
   } catch (e) {
     next(e);
   }
