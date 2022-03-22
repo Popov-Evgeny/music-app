@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { Observable, Subscription } from 'rxjs';
 import { TracksModel } from '../../models/tracks.model';
-import { fetchTracksRequest, updateTrackRequest } from '../../store/tracks.actions';
+import { fetchTracksRequest, removeTrackRequest, updateTrackRequest } from '../../store/tracks.actions';
 import { Publish, User } from '../../models/user.model';
 import { createTrackHistoryRequest } from '../../store/trackHistory.actions';
 
@@ -60,4 +60,8 @@ export class TracksComponent implements OnInit, OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
+  onRemove(id: string, event: Event) {
+    event.stopImmediatePropagation();
+    this.store.dispatch(removeTrackRequest({id}));
+  }
 }

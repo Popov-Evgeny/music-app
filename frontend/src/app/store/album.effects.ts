@@ -8,7 +8,7 @@ import {
   createAlbumSuccess,
   fetchAlbumFailure,
   fetchAlbumRequest,
-  fetchAlbumSuccess, updateAlbumRequest, updateAlbumSuccess
+  fetchAlbumSuccess, removeAlbumRequest, removeAlbumSuccess, updateAlbumRequest, updateAlbumSuccess
 } from './album.actions';
 import { Router } from '@angular/router';
 
@@ -43,6 +43,13 @@ export class AlbumsEffects {
     ofType(updateAlbumRequest),
     mergeMap(({data}) => this.musicService.publishAlbum(data).pipe(
       map(() => updateAlbumSuccess())
+    ))
+  ));
+
+  removeAlbum = createEffect(() => this.actions.pipe(
+    ofType(removeAlbumRequest),
+    mergeMap(({id}) => this.musicService.removeAlbum(id).pipe(
+      map(() => removeAlbumSuccess())
     ))
   ));
 }

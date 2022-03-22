@@ -6,7 +6,11 @@ import {
   createTrackSuccess,
   fetchTracksFailure,
   fetchTracksRequest,
-  fetchTracksSuccess, updateTrackRequest, updateTrackSuccess
+  fetchTracksSuccess,
+  removeTrackRequest,
+  removeTrackSuccess,
+  updateTrackRequest,
+  updateTrackSuccess
 } from './tracks.actions';
 
 const initialState: TracksState = {
@@ -15,7 +19,8 @@ const initialState: TracksState = {
   fetchError: null,
   createLoading: false,
   createError: null,
-  updateLoading: false
+  updateLoading: false,
+  removeLoading: false
 }
 
 export const tracksReducer = createReducer(
@@ -30,4 +35,13 @@ export const tracksReducer = createReducer(
 
   on(updateTrackRequest, state => ({...state, updateLoading: true})),
   on(updateTrackSuccess, state => ({...state, updateLoading: false})),
+
+  on(removeTrackRequest, (state, {id}) => {
+    const updateTrack = state.tracks.filter( track => {
+      return track._id !== id;
+    });
+
+    return {...state, tracks: updateTrack, removeLoading: true}
+  }),
+  on(removeTrackSuccess, state => ({...state, removeLoading: false})),
 )

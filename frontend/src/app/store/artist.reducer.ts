@@ -5,7 +5,11 @@ import {
   createArtistSuccess,
   fetchArtistFailure,
   fetchArtistRequest,
-  fetchArtistSuccess, updateArtistRequest, updateArtistSuccess
+  fetchArtistSuccess,
+  removeArtistRequest,
+  removeArtistSuccess,
+  updateArtistRequest,
+  updateArtistSuccess
 } from './artist.actions';
 import { ArtistsState } from './types';
 
@@ -15,7 +19,8 @@ const initialState: ArtistsState = {
   fetchError: null,
   createLoading: false,
   createError: null,
-  updateLoading: false
+  updateLoading: false,
+  removeLoading: false
 }
 
 export const artistsReducer = createReducer(
@@ -30,4 +35,13 @@ export const artistsReducer = createReducer(
 
   on(updateArtistRequest, state => ({...state, updateLoading: true})),
   on(updateArtistSuccess, state => ({...state, updateLoading: false})),
+
+  on(removeArtistRequest, (state, {id}) => {
+    const updateArtist = state.artists.filter( artist => {
+      return artist._id !== id;
+    });
+
+    return {...state, artists: updateArtist, removeLoading: true}
+  }),
+  on(removeArtistSuccess, state => ({...state, removeLoading: false})),
 )

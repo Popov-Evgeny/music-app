@@ -3,7 +3,7 @@ import { ArtistModel } from '../../models/artist.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { Observable } from 'rxjs';
-import { fetchArtistRequest, updateArtistRequest } from '../../store/artist.actions';
+import { fetchArtistRequest, removeArtistRequest, updateArtistRequest } from '../../store/artist.actions';
 import { environment } from '../../../environments/environment';
 import { Publish } from '../../models/user.model';
 import { Router } from '@angular/router';
@@ -40,5 +40,10 @@ export class ArtistsComponent implements OnInit {
       isPublished: true
     }
     this.store.dispatch(updateArtistRequest({data}))
+  }
+
+  onRemove(id: string, event: Event) {
+    event.stopImmediatePropagation();
+    this.store.dispatch(removeArtistRequest({id}));
   }
 }

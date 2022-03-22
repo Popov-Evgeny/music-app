@@ -12,6 +12,7 @@ export type ArtistsState = {
   createLoading: boolean,
   createError: null | string,
   updateLoading: boolean,
+  removeLoading: boolean,
 };
 
 export type AlbumsState = {
@@ -21,6 +22,7 @@ export type AlbumsState = {
   createLoading: boolean,
   createError: null | string,
   updateLoading: boolean,
+  removeLoading: boolean,
 };
 
 
@@ -39,6 +41,7 @@ export type TracksState = {
   createLoading: boolean,
   createError: null | string,
   updateLoading: boolean,
+  removeLoading: boolean,
 };
 
 export type TrackHistoryState = {

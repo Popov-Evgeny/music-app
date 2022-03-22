@@ -12,3 +12,6 @@ export const createArtistFailure = createAction('[Artist] Create Failure', props
 
 export const updateArtistRequest = createAction('[Artist] Update Request', props<{data: Publish}>());
 export const updateArtistSuccess = createAction('[Artist] Update Success');
+
+export const removeArtistRequest = createAction('[Artist] Remove Request', props<{id: string}>());
+export const removeArtistSuccess = createAction('[Artist] Remove Success');

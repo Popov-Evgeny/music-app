@@ -24,7 +24,7 @@
             <mat-divider inset></mat-divider>
             <mat-card-actions class="card__buttons-block">
               <button mat-raised-button color="accent" (click)="onPublish(album._id, $event)">Publish</button>
-              <button mat-raised-button color="warn">Delete</button>
+              <button mat-raised-button color="warn" (click)="onRemove(album._id, $event)">Delete</button>
             </mat-card-actions>
           </div>
         </mat-card>

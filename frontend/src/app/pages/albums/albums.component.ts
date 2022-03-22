@@ -6,7 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
-import { fetchAlbumRequest, updateAlbumRequest } from '../../store/album.actions';
+import { fetchAlbumRequest, removeAlbumRequest, updateAlbumRequest } from '../../store/album.actions';
 import { Publish } from '../../models/user.model';
 
 @Component({
@@ -54,5 +54,10 @@ export class AlbumsComponent implements OnInit {
     this.albums.subscribe( album => {
       this.artistInfo = album[0]?.author.information;
     })
+  }
+
+  onRemove(id: string, event: Event) {
+    event.stopImmediatePropagation();
+    this.store.dispatch(removeAlbumRequest({id}));
   }
 }

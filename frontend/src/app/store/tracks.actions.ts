@@ -12,3 +12,6 @@ export const createTrackFailure = createAction('[Track] Create Failure', props<{
 
 export const updateTrackRequest = createAction('[Track] Update Request', props<{data: Publish}>());
 export const updateTrackSuccess = createAction('[Track] Update Success');
+
+export const removeTrackRequest = createAction('[Track] Remove Request', props<{id: string}>());
+export const removeTrackSuccess = createAction('[Track] Remove Success');

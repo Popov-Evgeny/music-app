@@ -33,4 +33,8 @@ export class TracksService {
   publishTrack(data: Publish) {
     return this.http.post(environment.apiUrl +  '/tracks/' + data.id + '/publish', {isPublished: data.isPublished});
   }
+
+  removeTrack(id: string) {
+    return this.http.delete(environment.apiUrl + '/tracks/' + id);
+  }
 }

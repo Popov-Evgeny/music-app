@@ -12,3 +12,6 @@ export const createAlbumFailure = createAction('[Album] Create Failure', props<{
 
 export const updateAlbumRequest = createAction('[Album] Update Request', props<{data: Publish}>());
 export const updateAlbumSuccess = createAction('[Album] Update Success');
+
+export const removeAlbumRequest = createAction('[Album] Remove Request', props<{id: string}>());
+export const removeAlbumSuccess = createAction('[Album] Remove Success');

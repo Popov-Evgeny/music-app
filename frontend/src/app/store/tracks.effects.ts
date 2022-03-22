@@ -7,11 +7,14 @@ import {
   createTrackSuccess,
   fetchTracksFailure,
   fetchTracksRequest,
-  fetchTracksSuccess, updateTrackRequest, updateTrackSuccess
+  fetchTracksSuccess,
+  removeTrackRequest,
+  removeTrackSuccess,
+  updateTrackRequest,
+  updateTrackSuccess
 } from './tracks.actions';
 import { TracksService } from '../services/tracks.service';
 import { Router } from '@angular/router';
-
 
 
 @Injectable()
@@ -45,6 +48,13 @@ export class TracksEffects {
     ofType(updateTrackRequest),
     mergeMap(({data}) => this.tracksService.publishTrack(data).pipe(
       map(() => updateTrackSuccess())
+    ))
+  ));
+
+  removeTrack = createEffect(() => this.actions.pipe(
+    ofType(removeTrackRequest),
+    mergeMap(({id}) => this.tracksService.removeTrack(id).pipe(
+      map(() => removeTrackSuccess())
     ))
   ));
 }

@@ -7,10 +7,14 @@ import {
   createArtistSuccess,
   fetchArtistFailure,
   fetchArtistRequest,
-  fetchArtistSuccess, updateArtistRequest, updateArtistSuccess
+  fetchArtistSuccess,
+  removeArtistRequest, removeArtistSuccess,
+  updateArtistRequest,
+  updateArtistSuccess
 } from './artist.actions';
 import { catchError, map, mergeMap, of, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { removeAlbumSuccess } from './album.actions';
 
 @Injectable()
 
@@ -43,6 +47,13 @@ export class ArtistEffects {
     ofType(updateArtistRequest),
     mergeMap(({data}) => this.musicService.publishArtist(data).pipe(
       map(() => updateArtistSuccess())
+    ))
+  ));
+
+  removeArtist = createEffect(() => this.actions.pipe(
+    ofType(removeArtistRequest),
+    mergeMap(({id}) => this.musicService.removeArtist(id).pipe(
+      map(() => removeArtistSuccess())
     ))
   ));
 }

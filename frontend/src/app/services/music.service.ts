@@ -69,4 +69,12 @@ export class MusicService {
   publishArtist(data: Publish) {
     return this.http.post(environment.apiUrl +  '/artists/' + data.id + '/publish', {isPublished: data.isPublished});
   }
+
+  removeAlbum(id: string) {
+    return this.http.delete(environment.apiUrl + '/albums/' + id);
+  }
+
+  removeArtist(id: string) {
+    return this.http.delete(environment.apiUrl + '/artists/' + id);
+  }
 }
