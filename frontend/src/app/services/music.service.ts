@@ -63,10 +63,10 @@ export class MusicService {
   }
 
   publishAlbum(data: Publish) {
-    return this.http.post(environment.apiUrl +  '/albums/' + data.id + '/publish', data);
+    return this.http.post(environment.apiUrl +  '/albums/' + data.id + '/publish', {isPublished: data.isPublished});
   }
 
   publishArtist(data: Publish) {
-    return this.http.post(environment.apiUrl +  '/artists' + data.id + '/publish', data.isPublished);
+    return this.http.post(environment.apiUrl +  '/artists/' + data.id + '/publish', {isPublished: data.isPublished});
   }
 }

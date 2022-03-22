@@ -16,7 +16,7 @@
     </div>
     <mat-divider inset></mat-divider>
     <mat-card-actions class="card__buttons-block" *ngIf="(user | async)?.role === 'admin'">
-      <button mat-raised-button color="accent">Publish</button>
+      <button mat-raised-button color="accent" (click)="onPublish(track._id)">Publish</button>
       <button mat-raised-button color="warn">Delete</button>
     </mat-card-actions>
   </mat-card>

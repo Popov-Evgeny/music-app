@@ -31,6 +31,6 @@ export class TracksService {
   }
 
   publishTrack(data: Publish) {
-    return this.http.post(environment.apiUrl +  '/tracks' + data.id + '/publish', data.isPublished);
+    return this.http.post(environment.apiUrl +  '/tracks/' + data.id + '/publish', {isPublished: data.isPublished});
   }
 }

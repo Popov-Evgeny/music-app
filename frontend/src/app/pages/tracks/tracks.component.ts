@@ -2,11 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
-import { TracksService } from '../../services/tracks.service';
 import { Observable, Subscription } from 'rxjs';
 import { TracksModel } from '../../models/tracks.model';
-import { fetchTracksRequest } from '../../store/tracks.actions';
-import { User } from '../../models/user.model';
+import { fetchTracksRequest, updateTrackRequest } from '../../store/tracks.actions';
+import { Publish, User } from '../../models/user.model';
 import { createTrackHistoryRequest } from '../../store/trackHistory.actions';
 
 @Component({
@@ -36,7 +35,7 @@ export class TracksComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.albumName = params['name'];
-      this.store.dispatch(fetchTracksRequest({id: params['id']}))
+      this.store.dispatch(fetchTracksRequest({id: params['id']}));
     });
     this.userSubscription = this.user.subscribe( user => {
       if (user) {
@@ -47,6 +46,14 @@ export class TracksComponent implements OnInit, OnDestroy {
 
   addToHistory(trackId: string) {
     this.store.dispatch(createTrackHistoryRequest({data: trackId}))
+  }
+
+  onPublish(id: string) {
+    const data: Publish = {
+      id: id,
+      isPublished: true
+    }
+    this.store.dispatch(updateTrackRequest({data}));
   }
 
   ngOnDestroy() {
