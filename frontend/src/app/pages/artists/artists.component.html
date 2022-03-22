@@ -16,11 +16,13 @@
             <span class="material-icons card__unpublished-icon" *ngIf="!(artist.isPublished)">unpublished</span>
           </div>
           <mat-card-title class="card__title">{{ artist.name }}</mat-card-title>
-          <mat-divider inset></mat-divider>
-          <mat-card-actions class="card__buttons-block">
-            <button mat-raised-button color="accent" (click)="onPublish(artist._id, $event)">Publish</button>
-            <button mat-raised-button color="warn">Delete</button>
-          </mat-card-actions>
+          <div *appHasRoles="['admin']">
+            <mat-divider inset></mat-divider>
+            <mat-card-actions class="card__buttons-block">
+              <button mat-raised-button color="accent" (click)="onPublish(artist._id, $event)">Publish</button>
+              <button mat-raised-button color="warn">Delete</button>
+            </mat-card-actions>
+          </div>
         </mat-card>
       </div>
     </div>
