@@ -23,7 +23,7 @@
       </div>
       <mat-divider inset></mat-divider>
       <mat-card-actions class="card__buttons-block" *appOpenedRoles="['admin']">
-        <button mat-raised-button color="accent" (click)="onPublish(track._id)">Publish</button>
+        <button mat-raised-button color="accent" *ngIf="!(track.isPublished)" (click)="onPublish(track._id)">Publish</button>
         <button mat-raised-button color="warn" (click)="onRemove(track._id, $event)">Delete</button>
       </mat-card-actions>
     </mat-card>

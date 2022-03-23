@@ -18,7 +18,7 @@
           <div>
             <mat-divider inset></mat-divider>
             <mat-card-actions class="card__buttons-block" *appOpenedRoles="['admin']">
-              <button mat-raised-button color="accent" (click)="onPublish(artist._id, $event)">Publish</button>
+              <button mat-raised-button color="accent" *ngIf="!(artist.isPublished)" (click)="onPublish(artist._id, $event)">Publish</button>
               <button mat-raised-button color="warn" (click)="onRemove(artist._id, $event)">Delete</button>
             </mat-card-actions>
           </div>
