@@ -4,16 +4,20 @@
   box-sizing: border-box
   font-family: 'Josefin Sans', sans-serif
 
+
 .sidenav-container
   height: 100%
 
+.mat-drawer-inner-container
+  border-right: 2px solid #24c3be
+
 .sidenav
   width: 200px
-  background: black
-  box-shadow: 0 0 5px 3px silver inset
+  background: #303030
 
 .sidenav-menu
   display: flex
+  border-bottom: 2px solid #24c3be
 
 .sidenav-btn
   margin: 10px 8px
@@ -25,14 +29,12 @@
   position: sticky
   top: 0
   z-index: 1
-  box-shadow: 0 0 10px 2px white
 
 .mat-toolbar
   display: flex
   justify-content: space-between
-  background: black
-  border-top: 1px solid white
-  border-bottom: 1px solid white
+  background: #303030
+
 
 .sidenav-btn
   border: 2px solid white
@@ -40,38 +42,45 @@
 
 mat-icon
   margin-bottom: 7px
-  color: white
+  color: #24c3be
 
 .logo-block
   display: flex
 
 .logo
   display: flex
+  font-size: 30px
+  font-family: 'Satisfy', cursive
   font-weight: 700
   letter-spacing: 1px
   text-decoration: none
-  color: white
+  color: #24c3be
   margin: 0 15px
   padding-top: 8px
 
 .material-icons
   font-size: 30px
   padding-bottom: 7px
+  color: #24c3be
 
 .user-menu
   display: flex
   width: 200px
   justify-content: center
-  border: 2px solid white
-  background: black
+  border: 2px solid #24c3be
+  background: #1c1c1c
   margin: 5px 25px
   border-radius: 15px 0 15px 0!important
-  box-shadow: 0 0 5px 3px silver inset
+  box-shadow: 0 0 5px 3px #24c3be inset
 
 .content
   height: 100%
-  background: url("https://wallpaperaccess.com/full/2140907.jpg") 0 50% repeat
-  background-size: cover
+  background: #1c1c1c
+
+.container
+  max-width: 1330px
+  margin: 0 auto
+  padding: 0 15px
 
 .card
   text-decoration: none

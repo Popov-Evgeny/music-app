@@ -43,7 +43,6 @@ import { MatSliderModule } from '@angular/material/slider';
 import { trackHistoryReducer } from './store/trackHistory.reducer';
 import { TrackHistoryEffects } from './store/trackHistory.effects';
 import { TrackHistoryComponent } from './pages/track-history/track-history.component';
-import { MatTableModule } from '@angular/material/table';
 import { AuthInterceptor } from './auth.interceptor';
 import { PersonalAreaComponent } from './pages/personal-area/personal-area.component';
 import { CreateNewArtistComponent } from './pages/create-new-artist/create-new-artist.component';
@@ -54,6 +53,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { UserTypeDirective } from './directives/user-type.directive';
 import { HasRolesDirective } from './directives/has-roles.directive';
 import { OpenedRolesDirective } from './directives/opened-roles.directive';
+import { PlayerComponent } from './pages/plaer/plaer.component';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -84,7 +84,8 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     HomeComponent,
     UserTypeDirective,
     HasRolesDirective,
-    OpenedRolesDirective
+    OpenedRolesDirective,
+    PlayerComponent
   ],
     imports: [
         BrowserModule,

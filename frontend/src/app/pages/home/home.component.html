@@ -1,50 +1,60 @@
-<section class="general-section">
-  <div class="general-section__text">
-    <h3 class="general-section__title">Find your favorite tracks, listen or add your own!</h3>
+<section class="general-section wave-container">
+  <div class="wave-container__text">
+    <h3 class="wave-container__title">Find your favorite tracks, listen or add your own!</h3>
   </div>
 </section>
-<section class="chart-main">
-  <h3 class="chart-main__title">Top tracks</h3>
-  <div class="player-block">
-    <span class="material-icons player-block__play-icon">play_arrow</span>
-    <mat-slider aria-label="unit(s)" class="player-block__slider" value="20" disabled></mat-slider>
-    <div class="track-time">
-      <p class="track-time__time">00:33</p>
-      <p>—</p>
-      <p class="track-time__time">03:33</p>
-    </div>
-  </div>
-  <div class="list-block">
-    <ul class="list-main">
-      <li class="list-main__list-item"><span class="list-main__list-number"># 01. </span>Snoop Dogg - Smoke the Weed</li>
-      <li class="list-main__list-item"><span class="list-main__list-number"># 02. Linkin-Park - Numb</span></li>
-      <li class="list-main__list-item"><span class="list-main__list-number"># 03. </span>Eminem - Stepping Stone</li>
-      <li class="list-main__list-item"><span class="list-main__list-number"># 02. </span>Linkin-Park - One More Light</li>
-      <li class="list-main__list-item"><span class="list-main__list-number"># 05. </span>Disturbed - Indestructible</li>
-    </ul>
-  </div>
-</section>
-<section class="favorite-block">
-  <h3 class="favorite-block__title">Your favorite authors and bands</h3>
-  <div class="artists-block">
-    <div fxLayout="row wrap" fxLayoutAlign="space-around">
-      <div fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.lt-lg="33%" fxFlex="20%" *ngFor="let artist of arrArtists">
-        <a class="card" [routerLink]="[artist._id, artist.name, 'albums']">
-          <mat-card class="card__card-item">
-            <div class="card__image-block">
-              <img mat-card-image class="card__image" [src]="apiUrl + '/uploads/' + artist.image"
-                   alt="Photo of {{ artist.name }}">
-            </div>
-            <mat-card-title class="card__title">{{ artist.name }}</mat-card-title>
-          </mat-card>
-        </a>
+<section class="main-section">
+  <section class="about-section">
+    <div class="container">
+      <div class="about">
+        <img
+          src="https://st3.depositphotos.com/1001959/15090/i/600/depositphotos_150900470-stock-photo-hipster-bass-player.jpg"
+          class="about__image" alt="artist-image">
+        <div class="text-block">
+          <span class="text-block__subtitle">About us</span>
+          <h3 class="text-block__title">instrumental music band</h3>
+          <aside class="text-block__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore dolores illum
+            ipsa ipsam laborum maiores, neque quidem repellat vero voluptatem! Ab atque culpa distinctio ea, expedita,
+            ipsam
+            labore odit possimus quos recusandae sapiente ut voluptate! Ad amet corporis cumque dignissimos doloribus
+            eaque
+            fuga itaque, maxime modi mollitia nisi numquam odit perspiciatis quaerat quibusdam, quis velit voluptas
+            voluptatibus? Cupiditate eos laboriosam nisi perferendis quasi quo sapiente suscipit temporibus tenetur
+            voluptatibus? Consectetur cumque, dolorum ea fugit illum ipsa itaque iure, laborum modi nam pariatur qui
+            recusandae rem repellat reprehenderit soluta sunt, suscipit tempore. Aperiam at corporis, ex excepturi ipsam
+            magni natus voluptatem?
+          </aside>
+          <a type="button" class="btn-link" routerLink="/">contact us</a>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+  <section class="discography-section">
+    <div class="container">
+      <div class="discography">
+        <div class="discography__text">
+          <div class="text-block">
+            <span class="text-block__subtitle">Our Discography</span>
+            <h3 class="text-block__title">Populate artists & bands.</h3>
+          </div>
+          <a type="button" class="btn-link" routerLink="/">All Albums</a>
+        </div>
+        <div class="cards">
+          <div class="card" *ngFor="let artist of artists | async">
+            <img
+              [src]="apiUrl + '/uploads/' + artist.image"
+              class="card__image" alt="artist-image">
+            <h4 class="card-title">{{ artist.name }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <svg xmlns="http://www.w3.org/2000/svg" class="main-section__svg" viewBox="0 0 1440 250">
+    <path fill="#000" fill-opacity="1"
+          d="M0,128L48,122.7C96,117,192,107,288,101.3C384,96,480,96,576,122.7C672,149,768,203,864,208C960,213,1056,171,1152,160C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+  </svg>
 </section>
-<div class="button-scroll"
->
-  <button mat-fab color="accent" aria-label="Example icon button with a home icon"  (click)="onClick()">
-   <span class="material-icons">north</span>
-  </button>
-</div>
+<section class="player-section">
+  <app-plaer></app-plaer>
+</section>
