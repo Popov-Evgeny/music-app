@@ -1,0 +1,136 @@
+.audio-player
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-around
+  max-width: 1300px
+  background: inherit
+
+.player
+  width: 500px
+  border-radius: 20px
+  padding: 20px
+  background: #1c1c1c
+  margin: 50px
+  border: 3px solid #24c3be
+
+  @media screen and (max-width: 590px)
+    width: 400px
+    margin: 50px 0
+  @media screen and (max-width: 400px)
+    width: 280px
+
+  &__title
+    text-align: center
+    font-size: 20px
+    font-weight: 700
+    font-style: italic
+    padding: 10px
+    margin-bottom: 15px
+
+.player-image-block
+  display: flex
+  justify-content: center
+  align-items: center
+  margin: 0 auto 25px
+  width: 350px
+  height: 350px
+  background: #24c3be
+  border-radius: 50%
+  @media screen and (max-width: 590px)
+    width: 285px
+    height: 285px
+  @media screen and (max-width: 400px)
+    width: 205px
+    height: 205px
+
+  &__image-title
+    font-size: 22px
+    font-weight: 700
+    font-style: italic
+
+.btn-block
+  display: flex
+  justify-content: space-around
+  align-items: center
+  margin-bottom: 10px
+
+.material-icons
+  font-size: 40px
+
+.duration-block
+  display: flex
+  justify-content: center
+  align-items: center
+
+.duration
+  width: 100px
+  padding-top: 13px
+
+.volume-block
+  display: flex
+  justify-content: center
+  align-items: center
+
+  &__icon
+    font-size: 26px
+    padding-top: 7px
+
+
+.volume
+  width: 50px
+  padding-top: 13px
+
+.main-list
+  border-radius: 20px
+  padding: 50px 20px 20px
+  background: #1c1c1c
+  margin: 50px
+  border: 3px solid #24c3be
+
+  &__title
+    font-size: 40px
+    font-family: 'Satisfy', cursive
+    font-weight: 500
+    color: #24c3be
+    text-align: center
+    margin-bottom: 50px
+
+
+.list
+  list-style: none
+
+  &__list-items
+    display: flex
+    width: 500px
+    margin: 5px 0 15px
+    padding: 20px 15px 10px
+    background: #24c3be
+    border-radius: 10px
+    border: 2px solid white
+    &:hover
+      background: #217a75
+    @media screen and (max-width: 590px)
+      width: 385px
+    @media screen and (max-width: 400px)
+      width: 225px
+
+  &__list-items-number
+    font-size: 20px
+    font-weight: 700
+    font-style: italic
+    margin-right: 10px
+    color: black
+
+  &__list-items-song
+    font-size: 20px
+    font-weight: 700
+    font-style: italic
+
+
+.mat-slider-horizontal
+  min-width: 350px
+  @media screen and (max-width: 590px)
+    min-width: 185px
+  @media screen and (max-width: 400px)
+    min-width: 145px
+

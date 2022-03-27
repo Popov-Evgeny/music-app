@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="audio-player">
+    <div class="player">
+      <h3 class="player__title">{{ title }}</h3>
+      <div class="player-image-block">
+        <div class="player-image-block__image">
+          <h3 class="player-image-block__image-title">{{ song }}</h3>
+        </div>
+      </div>
+      <div class="btn-block">
+        <span class="material-icons" (click)="prevSong()">skip_previous</span>
+        <span class="material-icons" *ngIf="changeIcon else pauseBtn" (click)="play()">play_circle_outline</span>
+        <ng-template #pauseBtn>
+          <span class="material-icons" (click)="pause()">pause_circle_outline</span>
+        </ng-template>
+        <span class="material-icons" (click)="nextSong()">skip_next</span>
+      </div>
+      <div class="sliders">
+        <div class="duration-block">
+          <mat-slider aria-label="unit(s)" min="0" max="{{ maxSeek }}" [value]="seek" (input)="setSeek($event)"></mat-slider>
+          <p class="duration">{{ time }} / {{ duration }}</p>
+        </div>
+        <div class="volume-block">
+          <span class="material-icons volume-block__icon" *ngIf="volume === 0">volume_off</span>
+          <span class="material-icons volume-block__icon" *ngIf="volume !== 0">volume_up</span>
+          <mat-slider aria-label="unit(s)" step="0.01" min="0" max="1" value="0.5" (input)="setVolume($event)"></mat-slider>
+          <p class="volume">{{ volume }}%</p>
+        </div>
+      </div>
+    </div>
+    <div class="main-list">
+      <h4 class="main-list__title">Songs list</h4>
+      <ul class="list">
+        <li *ngFor="let audio of files, let i = index" (click)="open( audio.url, audio.author, audio.composition )" class="list__list-items">
+          <p class="list__list-items-number"># {{ i + 1 }}</p>
+          <p class="list__list-items-song">{{ audio.author }} - {{ audio.composition }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
