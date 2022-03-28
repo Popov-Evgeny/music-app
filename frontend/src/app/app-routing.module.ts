@@ -13,9 +13,11 @@ import { CreateNewAlbumComponent } from './pages/create-new-album/create-new-alb
 import { CreateNewTrackComponent } from './pages/create-new-track/create-new-track.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RoleGuardService } from './services/role-guard.service';
+import { ContactsComponent } from './pages/contacts/contacts.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'contacts', component: ContactsComponent },
   { path: 'artists', component: ArtistsComponent },
   { path: ':id/:name/albums', component: AlbumsComponent },
   { path: ':id/:author/:name/tracks', component: TracksComponent },

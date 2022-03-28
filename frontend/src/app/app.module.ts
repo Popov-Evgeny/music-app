@@ -54,6 +54,8 @@ import { UserTypeDirective } from './directives/user-type.directive';
 import { HasRolesDirective } from './directives/has-roles.directive';
 import { OpenedRolesDirective } from './directives/opened-roles.directive';
 import { PlayerComponent } from './pages/plaer/plaer.component';
+import { ContactsComponent } from './pages/contacts/contacts.component';
+import { FooterComponent } from './pages/footer/footer.component';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -85,7 +87,9 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     UserTypeDirective,
     HasRolesDirective,
     OpenedRolesDirective,
-    PlayerComponent
+    PlayerComponent,
+    ContactsComponent,
+    FooterComponent
   ],
     imports: [
         BrowserModule,
