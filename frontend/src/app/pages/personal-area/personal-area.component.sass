@@ -1,0 +1,73 @@
+.cabinet-block
+  &__title
+    font-size: 74px!important
+    font-weight: 700
+    font-family: 'Satisfy', cursive
+    line-height: 1
+    @media screen and (max-width: 560px)
+      font-size: 64px!important
+
+.cabinet
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-around
+  padding: 90px 15px
+  &__card
+    margin: 15px
+    text-decoration: none
+
+  &__card-item
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 350px
+    height: 330px
+    background: #24c3be
+    overflow: hidden
+    border-radius: 50% !important
+    border: 3px solid white
+    @media screen and (max-width: 560px)
+      width: 270px
+      height: 270px
+    &:hover
+      border: 7px solid white
+      transform: translateY(0)
+      transition: 1s
+      box-shadow: 0 0 19px 7px #24c3be
+      .card-image
+        opacity: 0.4
+      .card-title
+        top: 10%
+        transition: 2s
+        transform: translateY(100%)
+        @media screen and (max-width: 560px)
+          top: 0
+
+  &__card-image
+    width: 250px
+    height: 170px
+    margin-top: 10px!important
+    @media screen and (max-width: 560px)
+      width: 210px
+      height: 140px
+    &:first-child
+      border-radius: 0
+
+
+  &__card-title
+    display: inline-block
+    position: absolute
+    content: ''
+    width: 200px
+    height: 100px
+    top: -80px
+    left: 22%
+    text-align: center
+    font-size: 34px!important
+    font-weight: 700
+    font-family: 'Josefin Sans', sans-serif
+    text-transform: capitalize
+    @media screen and (max-width: 560px)
+      font-size: 30px!important
+      left: 12%

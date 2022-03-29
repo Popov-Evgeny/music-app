@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { AppState } from '../../store/types';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css']
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit{
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -21,19 +21,27 @@ export class LayoutComponent {
     );
 
   isOpen = true;
+  changeOnMenuReg = false;
+  breakpoint: number = 768;
   user: Observable<null | User>;
 
   constructor(private breakpointObserver: BreakpointObserver, private store: Store<AppState>) {
     this.user = store.select(state => state.users.user);
+  }
 
+  ngOnInit() {
+    this.changeOnMenuReg = this.breakpoint >= window.innerWidth;
   }
 
   onChange() {
     this.isOpen = !this.isOpen;
   }
 
-
   logout() {
     this.store.dispatch(logoutRequest());
+  }
+
+  onResize(event: any) {
+    this.changeOnMenuReg = this.breakpoint >= event.target.innerWidth;
   }
 }

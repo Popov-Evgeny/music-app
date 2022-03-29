@@ -16,9 +16,9 @@
     <mat-toolbar class="mat-toolbar">
       <div class="logo-block">
         <button mat-icon-button class="sidenav-btn" (click)="drawer.toggle(); onChange()">
-          <span class="material-icons">{{isOpen ? 'queue_music' : 'close'}}</span>
+          <span class="material-icons icon-menu-music">{{isOpen ? 'queue_music' : 'close'}}</span>
         </button>
-        <a class="logo" routerLink="/">Music <span class="material-icons">headset</span></a>
+        <a class="logo" routerLink="/">Music</a>
       </div>
       <nav *appUserType="'user' else anonMenu">
         <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -31,13 +31,24 @@
         </mat-menu>
       </nav>
       <ng-template #anonMenu>
-        <nav>
-          <a mat-raised-button class="reg-link" routerLink="/register">REGISTER</a>
-          <a mat-raised-button class="reg-link" routerLink="/login">SIGN IN</a>
+        <nav *ngIf="changeOnMenuReg else btnRegMenu">
+          <button mat-icon-button [matMenuTriggerFor]="regMenu">
+            <span class="material-icons icon-reg-menu" style="font-size: 24px">how_to_reg</span>
+          </button>
+          <mat-menu #regMenu="matMenu" class="user-menu">
+            <button mat-menu-item routerLink="/register">REGISTER</button>
+            <button mat-menu-item routerLink="/login">SIGN IN</button>
+          </mat-menu>
         </nav>
+        <ng-template #btnRegMenu>
+          <nav >
+            <a mat-raised-button class="reg-link" routerLink="/register">REGISTER</a>
+            <a mat-raised-button class="reg-link" routerLink="/login">SIGN IN</a>
+          </nav>
+        </ng-template>
       </ng-template>
     </mat-toolbar>
-    <div class="content">
+    <div class="content" (window:resize) = onResize($event)>
       <ng-content></ng-content>
     </div>
   </mat-sidenav-content>

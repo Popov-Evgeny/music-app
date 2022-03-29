@@ -1,1 +1,81 @@
+.card
+  width: 350px
+  height: 350px
+  overflow: hidden
+  border-radius: 50%
+  border: 2px solid #24c3be
+  position: relative
+  margin: 15px
+  @media screen and (max-width: 560px)
+    width: 270px
+    height: 270px
+
+  &:hover
+    transform: translateY(0)
+    box-shadow: 0 0 19px 7px #24c3be
+    .information
+      top: -3%
+      transition: 2s
+      transform: translateY(100%)
+      @media screen and (max-width: 560px)
+        top: -24%
+    .card-img
+      opacity: 0.4
+      transition: 2s
+
+  &__card-img
+    object-fit: cover
+    width: 350px
+    height: 350px
+    @media screen and (max-width: 560px)
+      width: 270px
+      height: 270px
+
+  .information
+    display: inline-block
+    position: absolute
+    content: ''
+    width: 200px
+    height: 100px
+    top: -200px
+    left: 21%
+    text-align: center
+    @media screen and (max-width: 560px)
+      left: 14%
+
+    &__title
+      text-align: center
+      font-size: 34px!important
+      font-weight: 500
+      font-family: 'Josefin Sans', sans-serif
+      text-transform: capitalize
+      color: white
+      @media screen and (max-width: 560px)
+        font-size: 24px!important
+
+    &__subtitle
+      font-size: 18px!important
+      font-weight: 500
+      font-family: 'Josefin Sans', sans-serif
+      padding: 0!important
+      @media screen and (max-width: 560px)
+        font-size: 16px!important
+
+    &__buttons-block
+      width: 230px
+      display: flex
+      justify-content: space-around
+      padding-right: 30px
+
+    &__unpublished-icon
+      font-size: 36px
+      padding-bottom: 15px
+      color: orange
+
+.btn
+  width: auto
+  height: 40px
+  margin: 5px auto
+  &:hover
+    box-shadow: 0 0 9px 5px white
 
