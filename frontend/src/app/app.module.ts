@@ -56,12 +56,27 @@ import { OpenedRolesDirective } from './directives/opened-roles.directive';
 import { PlayerComponent } from './pages/plaer/plaer.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { FooterComponent } from './pages/footer/footer.component';
+import { FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import { environment } from '../environments/environment';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
     keys: [{'users': ['user']}],
     rehydrate: true
   })(reducer);
+}
+
+const socialConfig: SocialAuthServiceConfig = {
+  autoLogin: false,
+  providers: [
+    {
+      id: FacebookLoginProvider.PROVIDER_ID,
+      provider: new FacebookLoginProvider(environment.fbAppId, {
+        scope: 'email,public_profile'
+      })
+
+    }
+  ]
 }
 
 const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
@@ -121,9 +136,11 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
         MatMenuModule,
         MatSliderModule,
         MatSelectModule,
+        SocialLoginModule
     ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: 'SocialAuthServiceConfig', useValue: socialConfig},
   ],
   bootstrap: [AppComponent]
 })

@@ -11,7 +11,19 @@ const tHistory = require('./routers/trackhistory');
 
 const port = 8000;
 
-app.use(cors({origin: 'http://localhost:4200'}));
+const whiteList = ['http://localhost:4200', 'https://localhost:4200'];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (origin === undefined || whiteList.indexOf(origin) !== -1){
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}
+
+app.use(cors({corsOptions}));
 app.use(express.json());
 app.use(express.static('public'));
 app.use('/artists', artists);

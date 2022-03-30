@@ -9,6 +9,13 @@ export const loginRequest = createAction('[Users] Login Request', props<{userDat
 export const loginSuccess = createAction('[Users] Login Success', props<{user: User}>());
 export const loginFailure = createAction('[Users] Login Failure', props<{error: null | LoginError}>());
 
+// export const loginFbRequest = createAction('[Users] Login Fb Request', props<{userData: LoginUserData}>());
+// export const loginFbSuccess = createAction('[Users] Login Fb Success', props<{user: User}>());
+// export const loginFbFailure = createAction('[Users] Login Fb Failure', props<{error: null | LoginError}>());
 
+
+// export const logoutUser = createAction('[Users] Logout');
+// export const userLogout = createAction('[Users] Logout')
 export const logoutUser = createAction('[Users] Logout Request');
-export const logoutRequest = createAction('[Users] Server Logout Request');
+
+export const logoutRequest = createAction('[Users] Logout Server Request');

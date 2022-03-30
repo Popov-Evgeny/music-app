@@ -1,7 +1,7 @@
 <div class="form-wrapper">
   <mat-card class="form-block">
     <mat-card-title class="form-block__form-title">Login</mat-card-title>
-    <mat-card-content class="form-wrapper">
+    <mat-card-content class="form-block__content">
       <form
         #form="ngForm"
         autocomplete="off"
@@ -38,7 +38,7 @@
 
         <a routerLink="/register" class="register-link">Don't have an account? Sign Up</a>
 
-        <div>
+        <div fxLayout="column" fxLayoutAlign="center">
           <button
             type="submit"
             mat-button
@@ -46,6 +46,17 @@
             [disabled]="form.invalid"
           >
             SIGN IN
+          </button>
+          <button
+            type="button"
+            mat-raised-button
+            color="default"
+            (click)="fbLogin()"
+          >
+            <img src="assets/icons/fb-icon.svg" alt="facebook logo" style="width: 24px">
+            &nbsp;
+            &nbsp;
+            SIGN IN WITH FACEBOOK
           </button>
         </div>
       </form>
