@@ -6,11 +6,12 @@ const config = require("../config");
 const {nanoid} = require("nanoid");
 const path = require("path");
 const axios = require('axios');
+const fs = require("fs");
 
 const router = express.Router();
 
 const storage = multer.diskStorage({
-  destination: (req,file,cd) => {
+  destination: (req, file, cd) => {
     cd(null, config.uploadsPath);
   },
   filename: (req, file, cd) => {
@@ -58,7 +59,7 @@ router.post('/sessions', async (req, res, next) => {
 
     const isMatch = await user.checkPassword(req.body.password);
 
-    if(!isMatch) {
+    if (!isMatch) {
       return res.status(400).send({error: 'Password is wrong'});
     }
 
@@ -81,35 +82,51 @@ router.post('/facebookLogin', async (req, res) => {
 
     const debugTokenUrl = `https://graph.facebook.com/debug_token?input_token=${inputToken}&access_token=${accessToken}`;
 
-      const response = await axios.get(debugTokenUrl);
+    const response = await axios.get(debugTokenUrl);
 
-      if (response.data.data.error) {
-        return res.status(401).send({message: 'Facebook token incorrect'});
-      }
+    if (response.data.data.error) {
+      return res.status(401).send({message: 'Facebook token incorrect'});
+    }
 
-      if (req.body.id !== response.data.data.user_id) {
-        return res.status(401).send({message: 'Wrong user ID'});
-      }
+    if (req.body.id !== response.data.data.user_id) {
+      return res.status(401).send({message: 'Wrong user ID'});
+    }
 
-      let user = await User.findOne({facebookId: req.body.id});
+    let user = await User.findOne({facebookId: req.body.id});
 
-      if (!user) {
-        user = new User({
-          email: req.body.email,
-          password: nanoid(),
-          facebookId: req.body.id,
-          name: req.body.name,
-          avatar: req.body.avatar
+    if (!user) {
+      const imageRandomName = `${nanoid()}.jpg`;
+
+      const fetch = require('node-fetch');
+      const fs = require('fs');
+
+      function downloadFile(url, path) {
+        return fetch(url).then(res => {
+          res.body.pipe(fs.createWriteStream(path));
         });
       }
-    console.log(user);
-    user.generateToken();
-      await user.save();
 
-      return res.send(user);
+      downloadFile(req.body.avatar,`./public/uploads/${imageRandomName}`)
+        .then(() => console.log('OK'))
+        .catch( err => console.error(err));
+
+      user = new User({
+        email: req.body.email,
+        password: nanoid(),
+        facebookId: req.body.id,
+        name: req.body.name,
+        avatar: imageRandomName
+      });
+    }
+
+    user.generateToken();
+
+    await user.save();
+
+    return res.send(user);
 
   } catch (e) {
-      return res.status(401).send({message: 'Facebook token incorrect'});
+    return res.status(401).send({message: 'Facebook token incorrect'});
   }
 });
 

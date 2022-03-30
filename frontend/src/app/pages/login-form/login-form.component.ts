@@ -36,7 +36,7 @@ export class LoginFormComponent implements OnInit, OnDestroy{
         id: userData.id,
         email: userData.email,
         name: userData.name,
-        avatar: userData.response.picture.url
+        avatar: userData.response.picture.data.url
       }
      this.store.dispatch(loginFbRequest({userData: user}))
     })
