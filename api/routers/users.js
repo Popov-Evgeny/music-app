@@ -95,7 +95,7 @@ router.post('/facebookLogin', async (req, res) => {
     let user = await User.findOne({facebookId: req.body.id});
 
     if (!user) {
-      const imageRandomName = `${nanoid()}.jpg`;
+      const imageRandomName = `${nanoid()}.png  `;
 
       const fetch = require('node-fetch');
       const fs = require('fs');

@@ -20,13 +20,15 @@ const run = async () => {
     password: '123',
     name: 'John Doe',
     token: nanoid(),
-    role: 'admin'
+    role: 'admin',
+    avatar: 'fb-music-app.jpg'
   }, {
     email: 'test@ad.com',
     password: '123',
     name: 'Jack Doe',
     token: nanoid(),
-    role: 'user'
+    role: 'user',
+    avatar: 'fb-music-app.jpg'
   });
 
   const [Eminem, Linkin, Disturbed, Snoop_Dogg] = await Artists.create({

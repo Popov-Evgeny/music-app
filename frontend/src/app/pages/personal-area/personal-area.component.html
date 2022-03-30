@@ -1,29 +1,41 @@
 <div class="general-block">
-  <div class="cabinet-block">
-    <h2 class="cabinet-block__title">Add something new in one click</h2>
-    <div class="cabinet">
-      <a routerLink="/create-new-track" class="cabinet__card">
-        <mat-card class="cabinet__card-item">
-          <img mat-card-image class="cabinet__card-image card-image" src="https://cdn-icons-png.flaticon.com/512/27/27188.png"
-               alt="Photo of a Shiba Inu">
-          <mat-card-title class="cabinet__card-title card-title">Create new Track</mat-card-title>
-        </mat-card>
-      </a>
-      <a routerLink="/create-new-artist" class="cabinet__card">
-        <mat-card class="cabinet__card-item">
-          <img mat-card-image class="cabinet__card-image card-image" src="https://cdn-icons-png.flaticon.com/512/199/199478.png"
-               alt="Photo of a Shiba Inu">
-          <mat-card-title class="cabinet__card-title card-title">Create new Artist</mat-card-title>
-        </mat-card>
-      </a>
-      <a routerLink="/create-new-album" class="cabinet__card">
-        <mat-card class="cabinet__card-item">
-          <img mat-card-image class="cabinet__card-image card-image"
-               src="https://icon-library.com/images/playlist-icon-png/playlist-icon-png-29.jpg"
-               alt="Photo of a Shiba Inu">
-          <mat-card-title class="cabinet__card-title card-title">Create new Album</mat-card-title>
-        </mat-card>
-      </a>
+  <div class="container">
+    <div class="user-block">
+      <h3 class="user-block__title">User information</h3>
+      <div class="user-information">
+        <img [src]="apiUrl + '/uploads/' + (user | async)?.avatar" alt="User avatar" class="user-information__user-avatar">
+        <h3 class="user-information__user-name">{{ (user | async )?.name }}</h3>
+      </div>
+    </div>
+    <div class="cabinet-block">
+      <h2 class="cabinet-block__title">Add something new in one click</h2>
+      <div class="cabinet">
+        <a routerLink="/create-new-track" class="cabinet__card">
+          <mat-card class="cabinet__card-item">
+            <img mat-card-image class="cabinet__card-image card-image" src="https://cdn-icons-png.flaticon.com/512/27/27188.png"
+                 alt="Photo of a Shiba Inu">
+            <mat-card-title class="cabinet__card-title card-title">Create new Track</mat-card-title>
+          </mat-card>
+        </a>
+        <a routerLink="/create-new-artist" class="cabinet__card">
+          <mat-card class="cabinet__card-item">
+            <img mat-card-image class="cabinet__card-image card-image" src="https://cdn-icons-png.flaticon.com/512/199/199478.png"
+                 alt="Photo of a Shiba Inu">
+            <mat-card-title class="cabinet__card-title card-title">Create new Artist</mat-card-title>
+          </mat-card>
+        </a>
+        <a routerLink="/create-new-album" class="cabinet__card">
+          <mat-card class="cabinet__card-item">
+            <img mat-card-image class="cabinet__card-image card-image"
+                 src="https://icon-library.com/images/playlist-icon-png/playlist-icon-png-29.jpg"
+                 alt="Photo of a Shiba Inu">
+            <mat-card-title class="cabinet__card-title card-title">Create new Album</mat-card-title>
+          </mat-card>
+        </a>
+      </div>
     </div>
   </div>
 </div>
+<section class="footer-section">
+  <app-footer></app-footer>
+</section>

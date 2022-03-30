@@ -1,33 +1,37 @@
 <div class="general-block">
-  <div>
-    <h2 class="artist-title">All artists</h2>
-    <div class="lds-facebook" *ngIf="(loading | async) else artistArea">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <ng-template #artistArea>
-      <div fxLayout="row wrap" fxLayoutAlign="center center">
-        <div *ngFor="let artist of artists | async">
-          <div class="card" *appHasRoles="{role: ['user', 'admin'], published: artist.isPublished}">
-            <img [src]="apiUrl + '/uploads/' + artist.image" alt="Photo of {{ artist.name }}"
-                 class="card__card-img card-img">
-            <div class="information">
-              <h3 class="information__title">{{ artist.name }}</h3>
-              <button mat-raised-button class="btn" (click)="onLink(artist._id, artist.name)">Albums</button>
-              <div class="information__buttons-block" *appOpenedRoles="['admin']">
-                <button mat-raised-button class="btn" color="accent" *ngIf="!(artist.isPublished)"
-                        (click)="onPublish(artist._id, $event)">
-                  Publish
-                </button>
-                <span class="material-icons  information__unpublished-icon" *ngIf="!(artist.isPublished)">unpublished</span>
-                <button mat-raised-button class="btn" color="warn" (click)="onRemove(artist._id, $event)">Delete</button>
+  <div class="container">
+    <div>
+      <h2 class="artist-title">All artists</h2>
+      <div class="lds-facebook" *ngIf="(loading | async) else artistArea">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ng-template #artistArea>
+        <div fxLayout="row wrap" fxLayoutAlign="center center">
+          <div *ngFor="let artist of artists | async">
+            <div class="card" *appHasRoles="{role: ['user', 'admin'], published: artist.isPublished}">
+              <img [src]="apiUrl + '/uploads/' + artist.image" alt="Photo of {{ artist.name }}"
+                   class="card__card-img card-img">
+              <div class="information">
+                <h3 class="information__title">{{ artist.name }}</h3>
+                <button mat-raised-button class="btn" (click)="onLink(artist._id, artist.name)">Albums</button>
+                <div class="information__buttons-block" *appOpenedRoles="['admin']">
+                  <button mat-raised-button class="btn" color="accent" *ngIf="!(artist.isPublished)"
+                          (click)="onPublish(artist._id, $event)">
+                    Publish
+                  </button>
+                  <span class="material-icons  information__unpublished-icon"
+                        *ngIf="!(artist.isPublished)">unpublished</span>
+                  <button mat-raised-button class="btn" color="warn" (click)="onRemove(artist._id, $event)">Delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </ng-template>
+      </ng-template>
+    </div>
   </div>
 </div>
 

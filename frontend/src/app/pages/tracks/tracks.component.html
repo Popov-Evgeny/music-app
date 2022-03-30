@@ -1,36 +1,41 @@
 <div class="general-block">
-  <div>
-    <h2 class="artist-title">Album : <span class="artist-title__span">{{ albumName }}</span></h2>
-  </div>
-  <div class="lds-facebook" *ngIf="(loading | async) else trackArea">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
+  <div class="container">
+    <div>
+      <h2 class="artist-title">Album : <span class="artist-title__span">{{ albumName }}</span></h2>
+    </div>
+    <div class="lds-facebook" *ngIf="(loading | async) else trackArea">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
 
-  <ng-template #trackArea>
-    <div  fxLayout="row wrap" fxLayoutAlign="center center">
-      <div *ngFor="let track of tracks | async">
-        <div class="card" *appHasRoles="{role: ['user', 'admin'], published: track.isPublished}">
-          <div class="front">
-            <h3 class="card__title">{{ track.name }}</h3>
-          </div>
-          <div class="back">
-            <div class="information">
-              <button mat-raised-button class="btn" (click)="addToHistory(track._id)">Play</button>
-              <div class="information__buttons-block" *appOpenedRoles="['admin']">
-                <button mat-raised-button class="btn" color="accent" *ngIf="!(track.isPublished)" (click)="onPublish(track._id)">
-                  Publish
-                </button>
-                <span class="material-icons information__unpublished-icon" *ngIf="!(track.isPublished)">unpublished</span>
-                <button mat-raised-button class="btn" color="warn" (click)="onRemove(track._id, $event)">Delete</button>
+    <ng-template #trackArea>
+      <div fxLayout="row wrap" fxLayoutAlign="center center">
+        <div *ngFor="let track of tracks | async">
+          <div class="card" *appHasRoles="{role: ['user', 'admin'], published: track.isPublished}">
+            <div class="front">
+              <h3 class="card__title">{{ track.name }}</h3>
+            </div>
+            <div class="back">
+              <div class="information">
+                <button mat-raised-button class="btn" (click)="addToHistory(track._id)">Play</button>
+                <div class="information__buttons-block" *appOpenedRoles="['admin']">
+                  <button mat-raised-button class="btn" color="accent" *ngIf="!(track.isPublished)"
+                          (click)="onPublish(track._id)">
+                    Publish
+                  </button>
+                  <span class="material-icons information__unpublished-icon"
+                        *ngIf="!(track.isPublished)">unpublished</span>
+                  <button mat-raised-button class="btn" color="warn" (click)="onRemove(track._id, $event)">Delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </ng-template>
+    </ng-template>
+  </div>
 </div>
 
 

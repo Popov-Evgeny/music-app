@@ -1,34 +1,38 @@
 <div class="general-block">
-  <div>
-    <h2 class="artist-title">All albums: <span class="artist-title__span">{{ artistName }}</span></h2>
-  </div>
-  <div class="lds-facebook" *ngIf="(loading | async) else albumsArea">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-  <ng-template #albumsArea>
-    <div fxLayout="row wrap" fxLayoutAlign="center center">
-      <div *ngFor="let album of albums | async">
-        <div class="card" *appHasRoles="{role: ['user', 'admin'], published: album.isPublished}">
-          <img [src]="apiUrl + '/uploads/' + album.image" alt="Photo of {{ album.name }}"
-               class="card__card-img card-img">
-          <div class="information">
-            <h3 class="information__title">{{ album.name }}</h3>
-            <p class="information__subtitle">{{ album.year }} г.</p>
-            <button mat-raised-button class="btn" (click)="onLink( album._id, album.author.name, album.name)">Tracks</button>
-            <div class="information__buttons-block" *appOpenedRoles="['admin']">
-              <button mat-raised-button class="btn" color="accent" *ngIf="!(album.isPublished)"
-                      (click)="onPublish(album._id, $event)">
-                Publish
+  <div class="container">
+    <div>
+      <h2 class="artist-title">All albums: <span class="artist-title__span">{{ artistName }}</span></h2>
+    </div>
+    <div class="lds-facebook" *ngIf="(loading | async) else albumsArea">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ng-template #albumsArea>
+      <div fxLayout="row wrap" fxLayoutAlign="center center">
+        <div *ngFor="let album of albums | async">
+          <div class="card" *appHasRoles="{role: ['user', 'admin'], published: album.isPublished}">
+            <img [src]="apiUrl + '/uploads/' + album.image" alt="Photo of {{ album.name }}"
+                 class="card__card-img card-img">
+            <div class="information">
+              <h3 class="information__title">{{ album.name }}</h3>
+              <p class="information__subtitle">{{ album.year }} г.</p>
+              <button mat-raised-button class="btn" (click)="onLink( album._id, album.author.name, album.name)">Tracks
               </button>
-              <span class="material-icons information__unpublished-icon" *ngIf="!(album.isPublished)">unpublished</span>
-              <button mat-raised-button class="btn" color="warn" (click)="onRemove(album._id, $event)">Delete</button>
+              <div class="information__buttons-block" *appOpenedRoles="['admin']">
+                <button mat-raised-button class="btn" color="accent" *ngIf="!(album.isPublished)"
+                        (click)="onPublish(album._id, $event)">
+                  Publish
+                </button>
+                <span class="material-icons information__unpublished-icon"
+                      *ngIf="!(album.isPublished)">unpublished</span>
+                <button mat-raised-button class="btn" color="warn" (click)="onRemove(album._id, $event)">Delete</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </ng-template>
+    </ng-template>
+  </div>
 </div>
 
