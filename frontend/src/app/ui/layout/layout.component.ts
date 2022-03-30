@@ -3,7 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { User } from '../../models/user.model';
-import { logoutRequest } from '../../store/users.actions';
+import { logoutUserRequest } from '../../store/users.actions';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 
@@ -38,7 +38,7 @@ export class LayoutComponent implements OnInit{
   }
 
   logout() {
-    this.store.dispatch(logoutRequest());
+    this.store.dispatch(logoutUserRequest());
   }
 
   onResize(event: any) {

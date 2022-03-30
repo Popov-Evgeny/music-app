@@ -5,11 +5,10 @@ import { Router } from '@angular/router';
 import {
   loginFailure,
   loginRequest,
-  loginSuccess,
-  logoutRequest, logoutUser,
+  loginSuccess, logoutUserRequest, logoutUser,
   registerUserFailure,
   registerUserRequest,
-  registerUserSuccess,
+  registerUserSuccess, loginFbRequest, loginFbSuccess, loginFbFailure,
 } from './users.actions';
 import { mergeMap, tap, map } from 'rxjs';
 import { HelpersService } from '../services/helpers.service';
@@ -49,35 +48,28 @@ export class UsersEffects {
     ))
   ))
 
+  loginUserFb = createEffect(() => this.actions.pipe(
+    ofType(loginFbRequest),
+    mergeMap(({userData}) => this.userService.loginFb(userData).pipe(
+      map(user => loginFbSuccess({user})),
+      tap(() => {
+        this.helpers.openSnackbar('Login successful');
+        void this.router.navigate(['/']);
+      }),
+      this.helpers.catchServerError(loginFbFailure)
+    ))
+  ))
 
-  // logoutUser = createEffect(() => this.actions.pipe(
-  //   ofType(logoutRequest),
-  //   mergeMap(() => this.userService.logout().pipe(
-  //     map(() => logoutUser()),
-  //     tap(() => {
-  //       this.helpers.openSnackbar('Logout successful'),
-  //         void this.router.navigate(['/']);
-  //     })
-  //   ))
-  // ))
-
-  // logoutUser1 = createEffect(() => this.actions.pipe(
-  //   ofType(logoutRequest),
-  //   mergeMap(() => this.userService.logout().pipe(
-  //       map(() => logoutUser()),
-  //       tap(() => {
-  //         this.helpers.openSnackbar('Logout successful');
-  //         void this.router.navigate(['/']);
-  //       })
-  //     ))
-  //   ))
   logoutUser = createEffect(() => this.actions.pipe(
-    ofType(logoutRequest),
-    mergeMap(() => this.userService.logout()),
+    ofType(logoutUserRequest),
+    mergeMap(() => {
+      return this.userService.logout().pipe(
         map(() => logoutUser()),
         tap(() => {
+          void this.router.navigate(['/']);
           this.helpers.openSnackbar('Logout successful');
-          void this.router.navigate(['/'])
+        })
+      );
     }))
   )
 }

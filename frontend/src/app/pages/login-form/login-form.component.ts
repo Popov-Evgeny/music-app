@@ -3,8 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
-import { LoginError, LoginUserData, User } from '../../models/user.model';
-import { loginRequest, loginSuccess } from '../../store/users.actions';
+import { LoginError, LoginUserData, LoginUserDataFb, User } from '../../models/user.model';
+import { loginFbRequest, loginRequest, loginSuccess } from '../../store/users.actions';
 import { FacebookLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
@@ -30,17 +30,15 @@ export class LoginFormComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    this.authStateSub = this.auth.authState.subscribe( (user: SocialUser) => {
-      this.http.post(environment.apiUrl + '/users/facebookLogin', {
-        authToken: user.authToken,
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        avatar: user.photoUrl
-      }).subscribe(userData => {
-        let user = <User>userData
-        this.store.dispatch(loginSuccess({user}));
-      });
+    this.authStateSub = this.auth.authState.subscribe( (userData: SocialUser) => {
+      const user: LoginUserDataFb = {
+        authToken: userData.authToken,
+        id: userData.id,
+        email: userData.email,
+        name: userData.name,
+        avatar: userData.response.picture.url
+      }
+     this.store.dispatch(loginFbRequest({userData: user}))
     })
   }
 
