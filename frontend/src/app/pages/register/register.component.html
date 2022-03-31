@@ -1,7 +1,3 @@
-<ng-container *ngIf="loading | async else formArea">
-  <mat-spinner></mat-spinner>
-</ng-container>
-<ng-template #formArea>
   <div class="form-wrapper">
     <mat-card class="form-block">
       <mat-card-title class="form-block__form-title">Register</mat-card-title>
@@ -67,7 +63,7 @@
             <mat-label>Avatar</mat-label>
             <app-file-input name="avatar" ngModel></app-file-input>
           </mat-form-field>
-          <div>
+          <div fxLayout="column" fxLayoutAlign="center">
             <button
               type="submit"
               mat-button
@@ -75,9 +71,30 @@
               [disabled]="form.invalid"
             >REGISTER
             </button>
+            <button
+              type="button"
+              mat-raised-button
+              color="default"
+              class="btn-link-fb"
+              (click)="googleLogin()"
+            >
+              <img src="assets/icons/google-icon.png" alt="facebook logo" class="icon-fb">
+              SIGN IN WITH GOOGLE
+            </button>
+            <button
+              type="button"
+              mat-raised-button
+              color="default"
+              class="btn-link-fb"
+              (click)="fbLogin()"
+            >
+              <img src="assets/icons/fb-icon.svg" alt="facebook logo" class="icon-fb">
+              REGISTER WITH FACEBOOK
+            </button>
           </div>
         </form>
       </mat-card-content>
+      <mat-progress-bar *ngIf="loading | async" mode="indeterminate"></mat-progress-bar>
+      <mat-progress-bar *ngIf="loadingFb | async" mode="indeterminate"></mat-progress-bar>
     </mat-card>
   </div>
-</ng-template>

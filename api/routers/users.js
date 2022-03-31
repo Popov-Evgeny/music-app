@@ -76,6 +76,14 @@ router.post('/sessions', async (req, res, next) => {
 });
 
 router.post('/facebookLogin', async (req, res) => {
+
+  let userData = await User.findOne({email: req.body.email});
+
+  if (userData) {
+    userData.generateToken();
+    return res.send(userData);
+  }
+
   try {
     const inputToken = req.body.authToken;
     const accessToken = config.facebook.appId + '|' + config.facebook.appSecret;
@@ -95,7 +103,7 @@ router.post('/facebookLogin', async (req, res) => {
     let user = await User.findOne({facebookId: req.body.id});
 
     if (!user) {
-      const imageRandomName = `${nanoid()}.png  `;
+      const imageRandomName = `${nanoid()}.jpeg`;
 
       const fetch = require('node-fetch');
       const fs = require('fs');
@@ -106,9 +114,7 @@ router.post('/facebookLogin', async (req, res) => {
         });
       }
 
-      downloadFile(req.body.avatar,`./public/uploads/${imageRandomName}`)
-        .then(() => console.log('OK'))
-        .catch( err => console.error(err));
+      downloadFile(req.body.avatar,`./public/uploads/${imageRandomName}`);
 
       user = new User({
         email: req.body.email,
@@ -129,6 +135,60 @@ router.post('/facebookLogin', async (req, res) => {
     return res.status(401).send({message: 'Facebook token incorrect'});
   }
 });
+
+router.post('/googleLogin', async (req, res) => {
+
+  let userData = await User.findOne({email: req.body.email});
+
+  if (userData) {
+    userData.generateToken();
+    return res.send(userData);
+  }
+
+  try {
+    const accessToken = req.body.response.access_token;
+
+    const response = await axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=` + accessToken);
+
+    if (req.body.id !== response.data.id) {
+      return res.status(401).send({message: 'Wrong user ID'});
+    }
+
+    let user = await User.findOne({googleId: req.body.id});
+
+    if (!user) {
+      const imageRandomName = `${nanoid()}.jpeg`;
+
+      const fetch = require('node-fetch');
+      const fs = require('fs');
+
+      function downloadFile(url, path) {
+        return fetch(url).then(res => {
+          res.body.pipe(fs.createWriteStream(path));
+        });
+      }
+
+      downloadFile(req.body.photoUrl,`./public/uploads/${imageRandomName}`);
+
+      user = new User({
+        email: req.body.email,
+        password: nanoid(),
+        googleId: req.body.id,
+        name: req.body.name,
+        avatar: imageRandomName
+      });
+    }
+
+    user.generateToken();
+
+    await user.save();
+
+    return res.send(user);
+  } catch (e) {
+    return res.status(401).send({message: 'Google token incorrect'});
+  }
+});
+
 
 
 router.delete('/sessions', async (req, res, next) => {

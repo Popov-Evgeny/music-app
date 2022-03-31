@@ -56,8 +56,14 @@ import { OpenedRolesDirective } from './directives/opened-roles.directive';
 import { PlayerComponent } from './pages/plaer/plaer.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { FooterComponent } from './pages/footer/footer.component';
-import { FacebookLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+  SocialAuthServiceConfig,
+  SocialLoginModule
+} from 'angularx-social-login';
 import { environment } from '../environments/environment';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 export const localStorageSyncReducer = (reducer: ActionReducer<any>) => {
   return localStorageSync({
@@ -74,7 +80,10 @@ const socialConfig: SocialAuthServiceConfig = {
       provider: new FacebookLoginProvider(environment.fbAppId, {
         scope: 'email,public_profile'
       })
-
+    },
+    {
+      id: GoogleLoginProvider.PROVIDER_ID,
+      provider: new GoogleLoginProvider(environment.googleID)
     }
   ]
 }
@@ -106,38 +115,39 @@ const metaReducers: Array<MetaReducer> = [localStorageSyncReducer];
     ContactsComponent,
     FooterComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        LayoutModule,
-        FormsModule,
-        FlexLayoutModule,
-        HttpClientModule,
-        MatToolbarModule,
-        MatButtonModule,
-        MatSidenavModule,
-        MatIconModule,
-        MatListModule,
-        StoreModule.forRoot({
-            artists: artistsReducer,
-            albums: albumsReducer,
-            users: userReducer,
-            tracks: tracksReducer,
-            trackHistory: trackHistoryReducer,
-        }, {metaReducers}),
-        EffectsModule.forRoot([ArtistEffects, AlbumsEffects, UsersEffects, TracksEffects, TrackHistoryEffects]),
-        MatCardModule,
-        MatProgressSpinnerModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatSnackBarModule,
-        MatMenuModule,
-        MatSliderModule,
-        MatSelectModule,
-        SocialLoginModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    FormsModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    StoreModule.forRoot({
+      artists: artistsReducer,
+      albums: albumsReducer,
+      users: userReducer,
+      tracks: tracksReducer,
+      trackHistory: trackHistoryReducer,
+    }, {metaReducers}),
+    EffectsModule.forRoot([ArtistEffects, AlbumsEffects, UsersEffects, TracksEffects, TrackHistoryEffects]),
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatMenuModule,
+    MatSliderModule,
+    MatSelectModule,
+    SocialLoginModule,
+    MatProgressBarModule
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: 'SocialAuthServiceConfig', useValue: socialConfig},

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginUserData, LoginUserDataFb, RegisterUserData, User } from '../models/user.model';
 import { environment, environment as env } from '../../environments/environment';
+import { SocialUser } from 'angularx-social-login';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +27,12 @@ export class UsersService {
     return this.http.post<User>(env.apiUrl + '/users/sessions', userData);
   }
 
-  loginFb(userData: LoginUserDataFb) {
+  loginFb(userData: SocialUser) {
     return this.http.post<User>(environment.apiUrl + '/users/facebookLogin', userData);
+  }
+
+  loginGoogle(userData: SocialUser) {
+    return this.http.post<User>(environment.apiUrl + '/users/googleLogin', userData);
   }
 
   logout() {

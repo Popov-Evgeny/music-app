@@ -5,10 +5,18 @@ import { Router } from '@angular/router';
 import {
   loginFailure,
   loginRequest,
-  loginSuccess, logoutUserRequest, logoutUser,
+  loginSuccess,
+  logoutUserRequest,
+  logoutUser,
   registerUserFailure,
   registerUserRequest,
-  registerUserSuccess, loginFbRequest, loginFbSuccess, loginFbFailure,
+  registerUserSuccess,
+  loginFbRequest,
+  loginFbSuccess,
+  loginFbFailure,
+  loginGoogleRequest,
+  loginGoogleSuccess,
+  loginGoogleFailure,
 } from './users.actions';
 import { mergeMap, tap, map } from 'rxjs';
 import { HelpersService } from '../services/helpers.service';
@@ -53,10 +61,22 @@ export class UsersEffects {
     mergeMap(({userData}) => this.userService.loginFb(userData).pipe(
       map(user => loginFbSuccess({user})),
       tap(() => {
-        this.helpers.openSnackbar('Login successful');
+        this.helpers.openSnackbar('Signed in successful with Facebook!');
         void this.router.navigate(['/']);
       }),
       this.helpers.catchServerError(loginFbFailure)
+    ))
+  ))
+
+  loginUserGoogle = createEffect(() => this.actions.pipe(
+    ofType(loginGoogleRequest),
+    mergeMap(({userData}) => this.userService.loginGoogle(userData).pipe(
+      map(user => loginGoogleSuccess({user})),
+      tap(() => {
+        this.helpers.openSnackbar('Signed in successful with Google!');
+        void this.router.navigate(['/']);
+      }),
+      this.helpers.catchServerError(loginGoogleFailure)
     ))
   ))
 

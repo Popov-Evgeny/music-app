@@ -143,12 +143,14 @@
   &__text
     display: flex
     flex-wrap: wrap
-    justify-content: space-between
+    justify-content: space-around
     align-items: center
-    @media screen and (max-width: 945px)
-      justify-content: center
+    @media screen and (max-width: 1268px)
+      display: block
+      text-align: center
       margin-bottom: 50px
-
+      .text-block
+        margin: 0 auto 50px
 .cards
   display: flex
   justify-content: center

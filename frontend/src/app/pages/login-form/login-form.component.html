@@ -52,6 +52,16 @@
             mat-raised-button
             color="default"
             class="btn-link-fb"
+            (click)="googleLogin()"
+          >
+            <img src="assets/icons/google-icon.png" alt="facebook logo" class="icon-fb">
+            SIGN IN WITH GOOGLE
+          </button>
+          <button
+            type="button"
+            mat-raised-button
+            color="default"
+            class="btn-link-fb"
             (click)="fbLogin()"
           >
             <img src="assets/icons/fb-icon.svg" alt="facebook logo" class="icon-fb">
@@ -60,5 +70,7 @@
         </div>
       </form>
     </mat-card-content>
+    <mat-progress-bar *ngIf="loading | async" mode="indeterminate"></mat-progress-bar>
+    <mat-progress-bar *ngIf="loadingFb | async" mode="indeterminate"></mat-progress-bar>
   </mat-card>
 </div>

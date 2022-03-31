@@ -3,11 +3,9 @@ import { NgForm } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
-import { LoginError, LoginUserData, LoginUserDataFb, User } from '../../models/user.model';
-import { loginFbRequest, loginRequest, loginSuccess } from '../../store/users.actions';
-import { FacebookLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { LoginError, LoginUserData, LoginUserDataFb } from '../../models/user.model';
+import { loginFbRequest, loginGoogleRequest, loginRequest } from '../../store/users.actions';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-login-form',
@@ -17,28 +15,34 @@ import { environment } from '../../../environments/environment';
 export class LoginFormComponent implements OnInit, OnDestroy{
   @ViewChild('form') form!: NgForm;
   loading: Observable<boolean>;
+  loadingFb: Observable<boolean>;
   error: Observable<null | LoginError>;
   authStateSub!: Subscription;
+  isGoogleLogin = false;
 
   constructor(
     private store: Store<AppState>,
     private auth: SocialAuthService,
-    private http: HttpClient
   ) {
     this.loading = store.select(state => state.users.loginLoading);
+    this.loadingFb = store.select(state => state.users.loadingFb);
     this.error = store.select(state => state.users.loginError);
   }
 
   ngOnInit() {
     this.authStateSub = this.auth.authState.subscribe( (userData: SocialUser) => {
-      const user: LoginUserDataFb = {
-        authToken: userData.authToken,
-        id: userData.id,
-        email: userData.email,
-        name: userData.name,
-        avatar: userData.response.picture.data.url
+      if (this.isGoogleLogin) {
+        this.store.dispatch(loginGoogleRequest({userData: userData}))
+      } else {
+        const user: LoginUserDataFb = {
+          authToken: userData.authToken,
+          id: userData.id,
+          email: userData.email,
+          name: userData.name,
+          avatar: userData.response.picture.data.url
+        }
+        this.store.dispatch(loginFbRequest({userData: userData}));
       }
-     this.store.dispatch(loginFbRequest({userData: user}))
     })
   }
 
@@ -49,6 +53,11 @@ export class LoginFormComponent implements OnInit, OnDestroy{
 
   fbLogin() {
     void this.auth.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  googleLogin() {
+    this.isGoogleLogin = true;
+    void this.auth.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
   ngOnDestroy() {

@@ -41,6 +41,8 @@ const UserSchema = new mongoose.Schema({
 
   facebookId: String,
 
+  googleId: String,
+
 });
 
 const SALT_FACTORY = 10;

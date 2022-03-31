@@ -31,6 +31,7 @@ export type UserState = {
   registerLoading: boolean,
   registerError: null | RegisterError,
   loginLoading: boolean,
+  loadingFb: boolean,
   loginError: null | LoginError
 };
 
