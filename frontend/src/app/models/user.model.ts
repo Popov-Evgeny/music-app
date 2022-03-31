@@ -31,14 +31,6 @@ export interface LoginUserData {
   password: string,
 }
 
-export interface LoginUserDataFb {
-  authToken: string,
-  name: string,
-  email: string,
-  id: string,
-  avatar: string
-}
-
 export interface LoginError {
   error: string,
 }
