@@ -65,6 +65,7 @@ export class RegisterComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.authStateSub.unsubscribe();
     this.errSubscription.unsubscribe();
   }
 }

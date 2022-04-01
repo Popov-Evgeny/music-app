@@ -113,7 +113,7 @@ router.post('/facebookLogin', async (req, res) => {
         });
       }
 
-      downloadFile(req.body.avatar,`./public/uploads/${imageRandomName}`);
+      await downloadFile(req.body.avatar,`./public/uploads/${imageRandomName}`);
 
       user = new User({
         email: req.body.email,
@@ -165,7 +165,7 @@ router.post('/googleLogin', async (req, res) => {
         });
       }
 
-      downloadFile(req.body.photoUrl,`./public/uploads/${imageRandomName}`);
+      await downloadFile(req.body.photoUrl,`./public/uploads/${imageRandomName}`);
 
       user = new User({
         email: req.body.email,
