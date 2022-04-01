@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoginUserData, LoginUserDataFb, RegisterUserData, User } from '../models/user.model';
+import { LoginUserData, RegisterUserData, User } from '../models/user.model';
 import { environment, environment as env } from '../../environments/environment';
 import { SocialUser } from 'angularx-social-login';
 

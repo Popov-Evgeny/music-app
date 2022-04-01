@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-import { LoginUserDataFb, RegisterError } from '../../models/user.model';
+import { RegisterError } from '../../models/user.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
 import { loginFbRequest, loginGoogleRequest, registerUserRequest } from '../../store/users.actions';

@@ -81,6 +81,7 @@ router.post('/facebookLogin', async (req, res) => {
 
   if (userData) {
     userData.generateToken();
+    await userData.save();
     return res.send(userData);
   }
 
@@ -142,6 +143,7 @@ router.post('/googleLogin', async (req, res) => {
 
   if (userData) {
     userData.generateToken();
+    await userData.save();
     return res.send(userData);
   }
 
