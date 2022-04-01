@@ -7,6 +7,7 @@ const {nanoid} = require("nanoid");
 const path = require("path");
 const axios = require('axios');
 const fs = require("fs");
+const fetch = require('node-fetch');
 
 const router = express.Router();
 
@@ -106,9 +107,6 @@ router.post('/facebookLogin', async (req, res) => {
     if (!user) {
       const imageRandomName = `${nanoid()}.jpeg`;
 
-      const fetch = require('node-fetch');
-      const fs = require('fs');
-
       function downloadFile(url, path) {
         return fetch(url).then(res => {
           res.body.pipe(fs.createWriteStream(path));
@@ -160,9 +158,6 @@ router.post('/googleLogin', async (req, res) => {
 
     if (!user) {
       const imageRandomName = `${nanoid()}.jpeg`;
-
-      const fetch = require('node-fetch');
-      const fs = require('fs');
 
       function downloadFile(url, path) {
         return fetch(url).then(res => {

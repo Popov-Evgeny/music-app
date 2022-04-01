@@ -54,7 +54,7 @@
             class="btn-link-fb"
             (click)="googleLogin()"
           >
-            <img src="assets/icons/google-icon.png" alt="facebook logo" class="icon-fb">
+            <img src="assets/icons/google-icon.svg" alt="facebook logo" class="icon-fb">
             SIGN IN WITH GOOGLE
           </button>
           <button
@@ -74,3 +74,6 @@
     <mat-progress-bar *ngIf="loadingFb | async" mode="indeterminate"></mat-progress-bar>
   </mat-card>
 </div>
+<section class="footer-section">
+  <app-footer></app-footer>
+</section>
