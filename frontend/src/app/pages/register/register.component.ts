@@ -20,6 +20,7 @@ export class RegisterComponent implements AfterViewInit, OnInit, OnDestroy {
   loadingFb: Observable<boolean>;
   authStateSub!: Subscription;
   isGoogleLogin = false;
+  isFbLogin = false;
 
   constructor(
     private store: Store<AppState>,
@@ -34,8 +35,19 @@ export class RegisterComponent implements AfterViewInit, OnInit, OnDestroy {
     this.authStateSub = this.auth.authState.subscribe( (userData: SocialUser) => {
       if (this.isGoogleLogin) {
         this.store.dispatch(loginFbRequest({userData: userData}));
-      } else {
+      }
+      if (this.isFbLogin) {
         this.store.dispatch(loginGoogleRequest({userData: userData}))
+      }
+    });
+  }
+
+  postUser() {
+    this.authStateSub = this.auth.authState.subscribe( (userData: SocialUser) => {
+      if (this.isGoogleLogin) {
+        this.store.dispatch(loginGoogleRequest({userData: userData}))
+      } else {
+        this.store.dispatch(loginFbRequest({userData: userData}));
       }
     })
   }
@@ -52,6 +64,7 @@ export class RegisterComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   fbLogin() {
+    this.isFbLogin = true;
     void this.auth.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 

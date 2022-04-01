@@ -19,6 +19,7 @@ export class LoginFormComponent implements OnInit, OnDestroy{
   error: Observable<null | LoginError>;
   authStateSub!: Subscription;
   isGoogleLogin = false;
+  isFbLogin = false;
 
   constructor(
     private store: Store<AppState>,
@@ -33,7 +34,8 @@ export class LoginFormComponent implements OnInit, OnDestroy{
     this.authStateSub = this.auth.authState.subscribe( (userData: SocialUser) => {
       if (this.isGoogleLogin) {
         this.store.dispatch(loginGoogleRequest({userData: userData}))
-      } else {
+      }
+      if (this.isFbLogin) {
         this.store.dispatch(loginFbRequest({userData: userData}));
       }
     })
@@ -45,6 +47,7 @@ export class LoginFormComponent implements OnInit, OnDestroy{
   }
 
   fbLogin() {
+    this.isFbLogin = true;
     void this.auth.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
