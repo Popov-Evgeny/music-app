@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/types';
-import { LoginError, LoginUserData, LoginUserDataFb } from '../../models/user.model';
+import { LoginError, LoginUserData } from '../../models/user.model';
 import { loginFbRequest, loginGoogleRequest, loginRequest } from '../../store/users.actions';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 
@@ -34,13 +34,6 @@ export class LoginFormComponent implements OnInit, OnDestroy{
       if (this.isGoogleLogin) {
         this.store.dispatch(loginGoogleRequest({userData: userData}))
       } else {
-        const user: LoginUserDataFb = {
-          authToken: userData.authToken,
-          id: userData.id,
-          email: userData.email,
-          name: userData.name,
-          avatar: userData.response.picture.data.url
-        }
         this.store.dispatch(loginFbRequest({userData: userData}));
       }
     })
